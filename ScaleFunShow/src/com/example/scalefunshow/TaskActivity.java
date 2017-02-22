@@ -58,7 +58,9 @@ public class TaskActivity extends Activity {
         peifangSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currentTask.setPeifangming(peifangnames[position]);
+                if(position != 0)
+                    currentTask.setPeifangming(peifangnames[position]);
+                else currentTask.setPeifangming(null);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
@@ -68,7 +70,10 @@ public class TaskActivity extends Activity {
         peiliaoSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currentTask.setPeiliaofangshi(peiLiaoFangShi[position]);
+                if(position != 0)
+                    currentTask.setPeiliaofangshi(peiLiaoFangShi[position]);
+                else
+                    currentTask.setPeiliaofangshi(null);
             }
 
             @Override
@@ -79,7 +84,8 @@ public class TaskActivity extends Activity {
         jiaobanjiSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currentTask.setJiaobanjiID(jiaobanjihao[position]);
+                if(position != 0) currentTask.setJiaobanjiID(jiaobanjihao[position]);
+                else currentTask.setJiaobanjiID(null);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
@@ -128,14 +134,13 @@ public class TaskActivity extends Activity {
             return;
         }
         taskList.add(currentTask);
-
     }
     
     private void clearCurrentTask() {
         currentTask = new TaskBean();
-        peiliaoSpinner.setSelection(-1);
-        jiaobanjiSpinner.setSelection(-1);
-        peifangSpinner.setSelection(-1);
+        peiliaoSpinner.setSelection(0);
+        jiaobanjiSpinner.setSelection(0);
+        peifangSpinner.setSelection(0);
         countEdit.setText("");
     }
 
