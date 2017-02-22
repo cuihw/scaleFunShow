@@ -1,0 +1,95 @@
+称重库接口说明：
+JNIScale mScale = JNIScale.getScale() //构建称重，初始化称重数据
+
+    public native String getStringNet();  //获取当前净重字串
+    public native String getStringTare(); //获取当前扣重字串
+    public native String getStringGross();//获取当前毛重字串
+
+    public native float getFloatNet();   //获取当前净重数值
+    public native float getFloatTare();  //获取当前扣重数值
+    public native float getFloatGross(); //获取当前毛重数值
+
+    public native boolean getStabFlag(); //当前称重数值是否稳定 =1稳定 =0不稳定
+    public native boolean getTareFlag(); //当前是否有扣重 =1有 =0无
+    public native boolean getZeroFlag(); //当前是否在零点 =1是 =0不是
+
+    public native boolean tare(); //扣重操作 
+    public native boolean zero(); //归零操作
+    public native boolean pretare(float tare); //预扣重 传入扣重值扣重
+
+    public native int getUnit();  //获取当前称重单位索引 //称重单位索引见下
+    public native String getStringUnit();//获取当前称重单位字串
+    public native boolean setUnit(int unit); //索引方式设置当前称重单位 //称重单位索引见下
+    public native boolean setStringUnit(String unit);//字串方式设置当前称重单位
+    public native int getMainUnitDeci(); //获取有几位小数点
+    public native boolean setMainUnitDeci(int deci);//设置有几位小数点
+    public native int getMainUnit(); //获取主单位索引
+    public native float getMainUnitFull(); //获取主单位称重量程
+    public native float getMainUnitMidFull(); //获取主单位半量程 （双分度值，双精度时）
+    public native boolean setMainUnit(int unit);//索引方式设置主单位
+    public native boolean setMainUnitFull(float full); //设置主单位称重量程
+    public native boolean setMainUnitMidFull(float midfull);//设置主单位半量程
+
+    public native int getFdnPtr(); //获取重量分度值1索引
+    public native int getBigFdnPtr(); //获取分度值2索引
+    public native boolean setFdnPtr(int ptr); //索引方式设置分度值1
+    public native boolean setBigFdnPtr(int ptr); //索引方式设置分度值2
+
+    public native boolean setRangeMode(int i); //设置量程模式 =0单精度 =1双精度 =2双量程
+    public native boolean setTareMode(int i); //设置允许连续扣重模式 =1 允许连续扣重
+    public native boolean setApproval(int i); //开关认证模式 =1认证
+    public native int approval(); //是否认证模式 =1认证
+    public native int smallFdn(); //获取低量程/精度fdn
+    public native int bigFdn();	 //获取高量程/精度fdn
+    public native int currFdn(); //获取当前fdn
+    public native int getRangeMode(); //获取当前称量程模式
+
+    public native int getInternelCount(); //获取当前内码
+  
+    通用标定数据保存：load0空载时内码 load1负载时内码 adw负载砝码重量
+    public native boolean saveNormalCalibration(int load0,int load1,float adw);
+
+    附加标定数据保存（暂未用）
+    public native boolean saveLinearCalibration(int calPoints,int load[],float calFull);
+
+
+    public native int getAutoZeroRangePtr(); //获取开机归零范围索引 //索引见下 zeroRangeTab
+    public native boolean setAutoZeroRangePtr(int i);//索引方式设置开机归零范围
+
+    public native int getManualZeroRangePtr(); //获取当前手动归零范围索引 //索引见下 zeroRangeTab
+    public native boolean setManualZeroRangePtr(int i);//索引方式设置手动归零范围
+    
+    public native int getZeroTrackPtr();//获取当前零点追踪范围 //索引见下 trackRange
+    public native boolean setZeroTrackPtr(int i);//索引方式设置零点追踪范围
+
+
+//===================================================
+//====================索引相关=======================
+
+    const float trackRange[]={0.0,0.5,1.0,2.0,4.0};
+    const float zeroRangeTab[]={0,0.02,0.03,0.04,0.1,0.2,0.5,1};
+    const uint16 fdnTable[]={1,2,5,10,20,50,100,200,500};
+
+    enum UnitIndex
+    {
+        UNIT_KG,  //千克
+        UNIT_G,   //克
+        UNIT_TJ,  //台斤
+        UNIT_GJ,  //港斤
+        UNIT_LB,  //磅
+        UNIT_OZ,  //盎司
+        UNIT_LBOZ,//磅盎司
+        UNIT_END
+    };
+
+    const ST_UNIT Scale::unit_tab[]= //单位索引与单位字串对应关系
+    {
+    	{UNIT_KG,"kg "},
+    	{UNIT_G, " g "},
+    	{UNIT_LB,"lb "},
+    	{UNIT_OZ,"oz "},
+    	{UNIT_TJ,"tj "},
+    	{UNIT_GJ,"hj "},
+    	{UNIT_LBOZ,"lz "},
+    };
+ 

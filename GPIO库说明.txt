@@ -1,0 +1,8 @@
+void GPIO_BeepOn()  //蜂鸣器常开
+void GPIO_BeepOff() //蜂鸣器常关
+void Beep()         //beep一声
+void BeepWarn()     //beep两声
+void BeepBase(int ms,int times) //自定义beep，响ms毫秒，停ms/2毫秒，times重复次数
+void GPIO_CashboxOn()  //钱箱打开
+void GPIO_CashboxOff() //钱箱关闭  
+void OpenCashbox()     //钱箱打开200毫秒后关闭

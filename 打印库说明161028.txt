@@ -1,0 +1,22 @@
+void printerType(int type) //设置打印机类型：PRINTER_TYPE_RG485，PRINTER_TYPE_XP58A //
+
+printerType(SerialUtil.PRINTER_TYPE_XP58A);
+
+void printCmd(int cmd) //向打印机发送基础指令，用于设置打印机各个参数，如：加热时间，打印左右限，二维码点大小等（以打印机手册为准）//设置二维码点大小为7：
+printCmd(0x1d);printCmd(0x53);printCmd(0x07);
+
+void printString(String string) //打印字符串 //printString("yingwen中文");
+void printCode(String code, int width, int height, int offset,int type) //打印条码，二维码
+//printCode("09876543",384,123,0,SerialUtil.BARCODETYPE_EAN_8);
+
+code:内容 width:宽度 height:高度 offset:偏移 type:类型（对于某些打印机二维码宽高不能设置，可使用
+printCmd(int cmd)函数发送修改二维码点大小指令（指令参考打印机手册））
+
+public final static int BARCODETYPE_QRCODE = 1;
+public final static int BARCODETYPE_EAN_13 = 2;
+public final static int BARCODETYPE_EAN_8 = 3;
+public final static int BARCODETYPE_CODE_128 = 4;
+public final static int BARCODETYPE_CODE_39 = 5;
+public final static int PRINTER_TYPE_RG485 = 0; //7寸内置打印机
+public final static int PRINTER_TYPE_XP58A = 1; //10寸内置打印机
+public final static int PRINTER_TYPE_HP58 = 2;  //7寸立杆内置打印机 //默认打印机

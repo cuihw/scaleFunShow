@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="peifang">
+        <item>请选择</item>
+        <item>小油条</item>
+        <item>元宵</item>
+        <item>韭菜鸡蛋饺子</item>
+        <item>小麻花</item>
+    </string-array>
+
+    <string-array name="jiaobanjihao">
+        <item>请选择</item>
+        <item>1123</item>
+        <item>1125</item>
+        <item>2564</item>
+        <item>5625</item>
+    </string-array>
+
+    <string-array name="peiliaofangshi">
+        <item>请选择</item>
+        <item>ADVDFA</item>
+        <item>BWERFD</item>
+        <item>CFDSFDH</item>
+        <item>DREWRTETRE</item>
+    </string-array>
+
+</resources>
