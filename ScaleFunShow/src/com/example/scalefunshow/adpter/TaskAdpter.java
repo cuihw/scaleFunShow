@@ -5,16 +5,11 @@ import java.util.List;
 import com.example.scalefunshow.R;
 import com.example.scalefunshow.bean.TaskBean;
 
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -32,17 +27,21 @@ public class TaskAdpter  extends BaseAdapter{
     
     @Override
     public int getCount() {
+        if (list != null) 
+            return list.size();
         return 0;
     }
 
     @Override
     public Object getItem(int position) {
+        if (list != null)
+            return list.get(position);
         return null;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override

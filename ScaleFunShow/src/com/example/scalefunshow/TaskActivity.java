@@ -1,12 +1,16 @@
 package com.example.scalefunshow;
 
 
+import utils.SharedPrefUtils;
 import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.scalefunshow.adpter.TaskAdpter;
 import com.example.scalefunshow.bean.TaskBean;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -39,6 +44,8 @@ public class TaskActivity extends Activity {
     Button countius;
 
     EditText countEdit;
+    
+    ListView  listView1;
 
 
 	@Override
@@ -90,9 +97,28 @@ public class TaskActivity extends Activity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+        
+        initListView();
 	}
 
-	public void onClick(View view) {
+	TaskAdpter adpter;
+	private void initListView() {
+	    // get task
+	    Gson gson = new Gson();
+	    String task = SharedPrefUtils.getString(this, "task", "");
+	    List<TaskBean> retList = null;
+	    if (!TextUtils.isEmpty(task)) {
+	        retList = gson.fromJson(task,  
+	                new TypeToken<List<TaskBean>>(){}.getType());  
+	    }
+	    if (retList != null)
+	        taskList = retList;
+
+	    adpter = new TaskAdpter(this, taskList);
+	    listView1.setAdapter(adpter);
+    }
+
+    public void onClick(View view) {
 	    if (ok_button == view) {
             saveTask();
         } else if (back == view){
@@ -104,6 +130,11 @@ public class TaskActivity extends Activity {
 	}
     
     private void saveTask() {
+        Gson gson = new Gson();
+        
+        String task = gson.toJson(taskList);
+        
+        SharedPrefUtils.SetString(this, "task", task);
     }
     
     private void addTask2List() {
@@ -134,6 +165,7 @@ public class TaskActivity extends Activity {
             return;
         }
         taskList.add(currentTask);
+        adpter.notifyDataSetChanged();
     }
     
     private void clearCurrentTask() {
@@ -143,5 +175,4 @@ public class TaskActivity extends Activity {
         peifangSpinner.setSelection(0);
         countEdit.setText("");
     }
-
 }
