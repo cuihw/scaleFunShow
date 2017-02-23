@@ -1,6 +1,5 @@
 package com.example.scalefunshow;
 
-
 import utils.SharedPrefUtils;
 import utils.Utils;
 
@@ -25,149 +24,170 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class TaskActivity extends Activity {
-    
-    String[] peifangnames = getResources().getStringArray(R.array.peifang);
-    
-    List<TaskBean> taskList = new ArrayList<TaskBean> ();
+
+    List<TaskBean> taskList = new ArrayList<TaskBean>();
+
     TaskBean currentTask;
 
-    String[] jiaobanjihao = getResources().getStringArray(R.array.jiaobanjihao);
+    String[] peifangnames;
 
+    String[] jiaobanjihao;
 
-    String[] peiLiaoFangShi = getResources().getStringArray(R.array.peiliaofangshi);
+    String[] peiLiaoFangShi;
+
     Spinner peiliaoSpinner;
+
     Spinner peifangSpinner;
+
     Spinner jiaobanjiSpinner;
 
     Button ok_button;
+
     Button back;
+
     Button countius;
 
     EditText countEdit;
-    
-    ListView  listView1;
 
+    ListView listView1;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Utils.hideNavigationBar(this);
+    TaskAdpter adpter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Utils.hideNavigationBar(this);
         setContentView(R.layout.activity_task);
 
-        ok_button = (Button)  findViewById(R.id.ok_button);
-        back = (Button)  findViewById(R.id.back);
-        countius = (Button)  findViewById(R.id.countius);
-        countEdit = (EditText)findViewById(R.id.count);
+        ok_button = (Button) findViewById(R.id.ok_button);
+        back = (Button) findViewById(R.id.back);
+        countius = (Button) findViewById(R.id.countius);
+        countEdit = (EditText) findViewById(R.id.count);
+
+        peifangnames = getResources().getStringArray(R.array.peifang);
+        jiaobanjihao = getResources().getStringArray(R.array.jiaobanjihao);
+        peiLiaoFangShi = getResources().getStringArray(R.array.peiliaofangshi);
 
         currentTask = new TaskBean();
 
         peifangSpinner = (Spinner) findViewById(R.id.spinner1);
-        peifangSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+        peifangSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0)
+                if (position != 0)
                     currentTask.setPeifangming(peifangnames[position]);
-                else currentTask.setPeifangming(null);
+                else
+                    currentTask.setPeifangming(null);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         peiliaoSpinner = (Spinner) findViewById(R.id.spinner2);
-        peiliaoSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+        peiliaoSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0)
+                if (position != 0)
                     currentTask.setPeiliaofangshi(peiLiaoFangShi[position]);
                 else
                     currentTask.setPeiliaofangshi(null);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         jiaobanjiSpinner = (Spinner) findViewById(R.id.spinner3);
-        jiaobanjiSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+        jiaobanjiSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0) currentTask.setJiaobanjiID(jiaobanjihao[position]);
-                else currentTask.setJiaobanjiID(null);
+                if (position != 0)
+                    currentTask.setJiaobanjiID(jiaobanjihao[position]);
+                else
+                    currentTask.setJiaobanjiID(null);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
-        
+
         initListView();
-	}
+    }
 
-	TaskAdpter adpter;
-	private void initListView() {
-	    // get task
-	    Gson gson = new Gson();
-	    String task = SharedPrefUtils.getString(this, "task", "");
-	    List<TaskBean> retList = null;
-	    if (!TextUtils.isEmpty(task)) {
-	        retList = gson.fromJson(task,  
-	                new TypeToken<List<TaskBean>>(){}.getType());  
-	    }
-	    if (retList != null)
-	        taskList = retList;
+    private void initListView() {
+        // get task
+        Gson gson = new Gson();
+        String task = SharedPrefUtils.getString(this, "task", "");
+        List<TaskBean> retList = null;
+        if (!TextUtils.isEmpty(task)) {
+            retList = gson.fromJson(task, new TypeToken<List<TaskBean>>() {
+            }.getType());
+        }
+        if (retList != null) {
+            taskList = retList;
+        }
 
-	    adpter = new TaskAdpter(this, taskList);
-	    listView1.setAdapter(adpter);
+        adpter = new TaskAdpter(this, taskList);
+        listView1.setAdapter(adpter);
     }
 
     public void onClick(View view) {
-	    if (ok_button == view) {
+        if (ok_button == view) {
             saveTask();
-        } else if (back == view){
+        } else if (back == view) {
             clearCurrentTask();
-        } else if (countius == view){
+        } else if (countius == view) {
             addTask2List();
             clearCurrentTask();
         }
-	}
-    
+    }
+
     private void saveTask() {
         Gson gson = new Gson();
-        
+
         String task = gson.toJson(taskList);
-        
+
         SharedPrefUtils.SetString(this, "task", task);
     }
-    
+
     private void addTask2List() {
         String strCount = countEdit.getText().toString();
         if (TextUtils.isEmpty(strCount)) {
-            Toast.makeText(this, "输入的“份数”不对，请确认是整数份。" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "输入的“份数”不对，请确认是整数份。", Toast.LENGTH_SHORT).show();
             return;
         }
 
         int count = Integer.parseInt(strCount);
 
         if (count < 1) {
-            Toast.makeText(this, "输入的“份数”不对，请确认是整数份。" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "输入的“份数”不对，请确认是整数份。", Toast.LENGTH_SHORT).show();
             return;
         }
         currentTask.setCount(count);
 
         if (TextUtils.isEmpty(currentTask.getPeifangming())) {
-            Toast.makeText(this, "输入的配方名不对，请确认。" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "输入的配方名不对，请确认。", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(currentTask.getPeiliaofangshi())) {
-            Toast.makeText(this, "输入的配料方式不对，请确认。" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "输入的配料方式不对，请确认。", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(currentTask.getJiaobanjiID())) {
-            Toast.makeText(this, "输入的搅拌机号不对，请确认。" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "输入的搅拌机号不对，请确认。", Toast.LENGTH_SHORT).show();
             return;
         }
         taskList.add(currentTask);
         adpter.notifyDataSetChanged();
     }
-    
+
     private void clearCurrentTask() {
         currentTask = new TaskBean();
         peiliaoSpinner.setSelection(0);
