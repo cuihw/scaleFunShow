@@ -1,19 +1,22 @@
 package com.example.scalefunshow;
 
-import utils.SharedPrefUtils;
-import utils.Utils;
+import com.example.scalefunshow.utils.SharedPrefUtils;
+import com.example.scalefunshow.utils.TaskCache;
+import com.example.scalefunshow.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.scalefunshow.adpter.TaskAdpter;
 import com.example.scalefunshow.bean.TaskBean;
+import com.example.scalefunshow.utils.ZzLog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -24,7 +27,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class TaskActivity extends Activity {
-
+    
+    private static final String TAG = "TaskActivity";
     List<TaskBean> taskList = new ArrayList<TaskBean>();
 
     TaskBean currentTask;
@@ -153,8 +157,10 @@ public class TaskActivity extends Activity {
         Gson gson = new Gson();
 
         String task = gson.toJson(taskList);
-
+        ZzLog.i(TAG, "task = " + task);
         SharedPrefUtils.SetString(this, "task", task);
+
+        TaskCache.setTaskList(taskList);
     }
 
     private void addTask2List() {

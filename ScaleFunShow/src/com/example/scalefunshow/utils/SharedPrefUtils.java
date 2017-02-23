@@ -1,10 +1,9 @@
-package utils;
+package com.example.scalefunshow.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 public class SharedPrefUtils {
-
 
     private static final String CONFIG = "config";
 

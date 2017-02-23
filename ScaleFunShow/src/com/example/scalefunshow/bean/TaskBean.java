@@ -7,6 +7,7 @@ public class TaskBean {
 	int Count;           //  份数
 	String peiliaofangshi; // 配料方式
 	String jiaobanjiID ;    // 搅拌机号
+	boolean isCompleted;
 
 	public String getPeifangming() {
 		return peifangming;
@@ -33,5 +34,13 @@ public class TaskBean {
 
 	public void setJiaobanjiID(String jiaobanjiID) {
 		this.jiaobanjiID = jiaobanjiID;
+	}
+
+	public boolean isCompleted() {
+		return isCompleted;
+	}
+
+	public void setCompleted(boolean completed) {
+		isCompleted = completed;
 	}
 }

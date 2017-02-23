@@ -20,11 +20,17 @@ public class TaskAdpter  extends BaseAdapter{
 
     List<TaskBean> list;
     Context context;
-
-    public TaskAdpter(Context context, List<TaskBean> list) {
-        
-    }
+    private int resourceid;
     
+    public TaskAdpter(Context context, List<TaskBean> list) {
+        this.list = list;
+        this.context = context;
+    }
+
+    public void setLayout(int resourceid) {
+        this.resourceid = resourceid;
+    }
+
     @Override
     public int getCount() {
         if (list != null) 
@@ -46,11 +52,15 @@ public class TaskAdpter  extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        
+
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.task_item, null);
+            if (resourceid != 0) {
+                convertView = LayoutInflater.from(context).inflate(resourceid, null);
+            } else {
+                convertView = LayoutInflater.from(context).inflate(R.layout.task_item, null);
+            }
             convertView.setTag(viewHolder);
             viewHolder.tvPeifang = (TextView) convertView.findViewById(R.id.name);
             viewHolder.tvcount = (TextView) convertView.findViewById(R.id.count);

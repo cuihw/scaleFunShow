@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">思念智能称量</string>
+    <string name="app_name">sinianzhinengcheng</string>
+    <string name="app_name_cn">思念智能秤</string>
     <string name="demo">Tscale_demo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

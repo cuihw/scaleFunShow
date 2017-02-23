@@ -1,4 +1,4 @@
-package utils;
+package com.example.scalefunshow.utils;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -21,11 +21,10 @@ public class Utils {
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@SuppressLint("InlinedApi")
 	public static void hideNavigationBar(Activity activity) {
-		int uiFlags = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+		int uiFlags = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION  // hide nav bar
 				| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-				| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
-				View.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
-				View.SYSTEM_UI_FLAG_IMMERSIVE;
+				| View.SYSTEM_UI_FLAG_FULLSCREEN  // hide status bar
+		        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
 		if (android.os.Build.VERSION.SDK_INT >= 19) {
 			uiFlags |= 0x00001000; // SYSTEM_UI_FLAG_IMMERSIVE_STICKY: hide

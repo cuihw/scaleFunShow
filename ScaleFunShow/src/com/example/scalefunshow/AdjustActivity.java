@@ -1,21 +1,18 @@
 package com.example.scalefunshow;
 
-import utils.Utils;
+import com.example.scalefunshow.utils.Utils;
 
 import com.example.scalefunshow.tscale.TScale;
+import com.example.scalefunshow.utils.ZzLog;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class AdjustActivity  extends Activity{
@@ -44,7 +41,7 @@ public class AdjustActivity  extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		Log.i(TAG, "onCreate()....");
+		ZzLog.i(TAG, "onCreate()....");
 		Utils.hideNavigationBar(this);
         setContentView(R.layout.activity_adjust);
         button1 = (Button)findViewById(R.id.button1);
@@ -66,10 +63,10 @@ public class AdjustActivity  extends Activity{
 
 		if (ok_button == view) {
 			setOk = true;
-			Log.i(TAG, "setok....");
+			ZzLog.i(TAG, "setok....");
 			if (currentButton != null) {
 
-				Log.i(TAG, "currentButton...." + currentButton.getText().toString());
+				ZzLog.i(TAG, "currentButton...." + currentButton.getText().toString());
 				currentButton.setTag(IS_ALREADY_ADJUST);
 				currentButton.setText("校准完成");
 			}
@@ -100,7 +97,7 @@ public class AdjustActivity  extends Activity{
 	}
 
 	private void startTask() {
-        Log.i(TAG, "startTask");
+		ZzLog.i(TAG, "startTask");
         Intent intent = new Intent();
 		intent.setClass(this, TaskActivity.class);
 		startActivity(intent);
@@ -205,7 +202,7 @@ public class AdjustActivity  extends Activity{
  				String weight = TScale.getWeight();
  				textview_weight.setText(weight);
 
- 				Log.i(TAG, "read weight...." + weight);
+			    ZzLog.i(TAG, "read weight...." + weight);
  				if (!setOk) {
  	 				handler.sendEmptyMessageDelayed(GET_WEIGHT, 1000);
  				}

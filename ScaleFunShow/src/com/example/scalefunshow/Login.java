@@ -1,15 +1,12 @@
 package com.example.scalefunshow;
 
-import utils.Utils;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
+import com.example.scalefunshow.utils.Utils;
+
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class Login extends Activity {
 
