@@ -13,7 +13,7 @@ import com.example.scalefunshow.utils.Utils;
 
 import java.util.List;
 
-public class WorkActivity extends Activity {
+public class TaskChooseActivity extends Activity {
 
 	GridView task_grid;
 
@@ -24,7 +24,7 @@ public class WorkActivity extends Activity {
 
 		super.onCreate(savedInstanceState);
 		Utils.hideNavigationBar(this);
-        setContentView(R.layout.activity_working);
+        setContentView(R.layout.activity_choose_task);
 		taskList = TaskCache.getTaskList();
 		task_grid = (GridView)findViewById(R.id.task_grid);
 		task_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

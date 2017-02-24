@@ -129,6 +129,9 @@ public class TaskActivity extends Activity {
         // get task
         Gson gson = new Gson();
         String task = SharedPrefUtils.getString(this, "task", "");
+
+        ZzLog.i(TAG, "reading task = " + task);
+
         List<TaskBean> retList = null;
         if (!TextUtils.isEmpty(task)) {
             retList = gson.fromJson(task, new TypeToken<List<TaskBean>>() {
@@ -137,7 +140,7 @@ public class TaskActivity extends Activity {
         if (retList != null) {
             taskList = retList;
         }
-
+        listView1 = (ListView)findViewById(R.id.listView1);
         adpter = new TaskAdpter(this, taskList);
         listView1.setAdapter(adpter);
     }
@@ -155,12 +158,15 @@ public class TaskActivity extends Activity {
 
     private void saveTask() {
         Gson gson = new Gson();
-
+        if (taskList.size() == 0) {
+        	return;
+        }
         String task = gson.toJson(taskList);
         ZzLog.i(TAG, "task = " + task);
         SharedPrefUtils.SetString(this, "task", task);
 
         TaskCache.setTaskList(taskList);
+        Utils.startActivity(this, TaskChooseActivity.class);
     }
 
     private void addTask2List() {

@@ -72,10 +72,10 @@ public class TaskAdpter  extends BaseAdapter{
         
         TaskBean taskBean = list.get(position);
 
-        viewHolder.tvPeifang.setText("配方名称： " + taskBean.getPeifangming());
-        viewHolder.tvcount.setText("生产份数： " + taskBean.getCount());
-        viewHolder.tvjiaobanji.setText("搅拌机号： " + taskBean.getJiaobanjiID());
-        
+        viewHolder.tvPeifang.setText("配方名称：" + taskBean.getPeifangming());
+        viewHolder.tvcount.setText("份数：" + taskBean.getCount());
+        viewHolder.tvjiaobanji.setText("搅拌机号：" + taskBean.getJiaobanjiID());
+
         return convertView;
     }
 

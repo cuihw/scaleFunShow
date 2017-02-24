@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#113355"
-    tools:context="com.example.scalefunshow.WorkActivity" >
+    tools:context="com.example.scalefunshow.WorkingActivity" >
 
     <TextView
         android:id="@+id/task_choose"
@@ -16,24 +16,5 @@
         android:text="任务选择"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <GridView
-        android:id="@+id/task_grid"
-        android:layout_margin="20dp"
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/task_choose"
-        android:numColumns="4"
-        />
-
-    <RelativeLayout
-        android:id="@+id/choose_task_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" >
-
-    </RelativeLayout>
 
 </RelativeLayout>

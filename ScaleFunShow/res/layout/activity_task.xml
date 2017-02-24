@@ -130,10 +130,10 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button1"
-            android:layout_alignBottom="@+id/button1"
+            android:layout_alignBaseline="@+id/countius"
+            android:layout_alignBottom="@+id/countius"
             android:layout_marginRight="60dp"
-            android:layout_toLeftOf="@+id/button1"
+            android:layout_toLeftOf="@+id/countius"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="   返回    "
@@ -145,7 +145,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/relativeLayout1" >
 
         <TextView
@@ -164,6 +163,7 @@
 	        android:layout_centerHorizontal="true"
 	        android:padding="15dp"
 	        android:textSize="20sp"
+	        android:layout_margin="15dp"
             android:onClick="onClick"
 	        android:text="确定" />
         <ListView
@@ -172,8 +172,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textView6"
-            android:layout_above="@+id/button3"
-            android:layout_margin="10dp"
+            android:layout_above="@+id/ok_button"
+            android:layout_margin="0dp"
             android:layout_marginTop="20dp" >
         </ListView>
     </RelativeLayout>
