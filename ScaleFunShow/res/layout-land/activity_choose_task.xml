@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/task_choose"
         android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp" 
+        android:horizontalSpacing="10dp"
         android:numColumns="4"
         />
 
@@ -32,10 +32,9 @@
         android:id="@+id/choose_task_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" >
-
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" >
     </RelativeLayout>
 
 </RelativeLayout>

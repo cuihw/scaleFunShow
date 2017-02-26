@@ -29,6 +29,7 @@ public class AdjustActivity  extends Activity{
 	Button currentButton;
 	
 	Button ok_button;
+	Button zero;
 	
 	private boolean setOk;
 	TextView textview_weight;
@@ -51,9 +52,12 @@ public class AdjustActivity  extends Activity{
         button5 = (Button)findViewById(R.id.button5);
         confirm = (Button)findViewById(R.id.confirm);
         ok_button = (Button)findViewById(R.id.ok_button);
+        zero = (Button)findViewById(R.id.zero);
         textview_weight = (TextView)findViewById(R.id.textview_weight);
+        // TScale.getInstence().setUnit();
+        // TScale.getInstence().setMainUnitDeci(4);
 	}
-	
+
 	public void onClick(View view){
 		if (view == button1 || view == button2 || view == button3
 				|| view == button4 || view == button5){
@@ -93,13 +97,16 @@ public class AdjustActivity  extends Activity{
 		
 		if (confirm == view) {
 			startTask();
+		} else if (zero == view) {
+			TScale.getInstence().zero();
 		}
+		
 	}
 
 	private void startTask() {
 		ZzLog.i(TAG, "startTask");
         Intent intent = new Intent();
-		intent.setClass(this, TaskActivity.class);
+		intent.setClass(this, TaskChooseActivity.class);
 		startActivity(intent);
 		finish();
 	}
@@ -191,18 +198,19 @@ public class AdjustActivity  extends Activity{
 			}
 		}
 	}
-	Handler handler = new Handler(){
 
+	Handler handler = new Handler(){
 
 		@Override
 		public void handleMessage(Message msg) {
  			super.handleMessage(msg);
  			
  			if(msg.what == GET_WEIGHT) {
- 				String weight = TScale.getWeight();
+ 				String weight = TScale.getInstence().getWeight();
+ 				int deci = TScale.getInstence().getMainUnitDeci();
  				textview_weight.setText(weight);
 
-			    ZzLog.i(TAG, "read weight...." + weight);
+			    ZzLog.i(TAG, "read weight...." + weight + ", deci = " + deci);
  				if (!setOk) {
  	 				handler.sendEmptyMessageDelayed(GET_WEIGHT, 1000);
  				}

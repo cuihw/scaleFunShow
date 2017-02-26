@@ -7,7 +7,7 @@ import com.example.scalefunshow.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.scalefunshow.adpter.TaskAdpter;
+import com.example.scalefunshow.adpter.TaskAdapter;
 import com.example.scalefunshow.bean.TaskBean;
 import com.example.scalefunshow.utils.ZzLog;
 import com.google.gson.Gson;
@@ -55,7 +55,7 @@ public class TaskActivity extends Activity {
 
     ListView listView1;
 
-    TaskAdpter adpter;
+    TaskAdapter adpter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +141,7 @@ public class TaskActivity extends Activity {
             taskList = retList;
         }
         listView1 = (ListView)findViewById(R.id.listView1);
-        adpter = new TaskAdpter(this, taskList);
+        adpter = new TaskAdapter(this, taskList);
         listView1.setAdapter(adpter);
     }
 
@@ -166,7 +166,7 @@ public class TaskActivity extends Activity {
         SharedPrefUtils.SetString(this, "task", task);
 
         TaskCache.setTaskList(taskList);
-        Utils.startActivity(this, TaskChooseActivity.class);
+        Utils.startActivity(this, Login.class);
     }
 
     private void addTask2List() {

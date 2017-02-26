@@ -58,6 +58,12 @@
             >
         </activity>
 
+        <activity
+            android:name="com.example.scalefunshow.WorkingActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            >
+        </activity>
         
     </application>
 

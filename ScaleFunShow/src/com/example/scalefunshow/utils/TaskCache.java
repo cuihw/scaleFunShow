@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TaskCache {
 
-    static List<TaskBean> taskList = new ArrayList<TaskBean>();
+    static List<TaskBean> taskList;
     public static TaskBean current;
     public static List<TaskBean> getTaskList() {
         return taskList;

@@ -88,13 +88,24 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/relativeLayout1" >
 
-        <TextView
-            android:id="@+id/textView1"
+        <Button
+            android:id="@+id/zero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="40dp"
+            android:textSize="30sp" 
+            android:padding="20dp"
+            android:text="归零" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/zero"
+            android:layout_marginTop="20dp"
             android:text="砝碼重量:"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -107,7 +118,8 @@
             android:layout_marginBottom="30dp"
             android:onClick="onClick"
             android:visibility="invisible"
-            android:textSize="20sp" 
+            android:textSize="30sp" 
+            android:padding="20dp"
             android:text="全部校准完成" />
 
         <TextView
@@ -116,8 +128,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textView1"
-            android:layout_marginLeft="27dp"
-            android:layout_marginTop="73dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:text="读取到的重量"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -125,12 +137,13 @@
             android:id="@+id/ok_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
             android:layout_below="@+id/textview_weight"
-            android:layout_marginTop="73dp"
+            android:layout_marginRight="10dp"
             android:onClick="onClick"
+            android:padding="20dp"
             android:text="确定"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
     </RelativeLayout>
 

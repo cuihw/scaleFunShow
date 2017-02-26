@@ -16,13 +16,13 @@ import android.widget.TextView;
  * Created by cuihuawei on 2/22/2017.
  */
 
-public class TaskAdpter  extends BaseAdapter{
+public class TaskAdapter  extends BaseAdapter{
 
     List<TaskBean> list;
     Context context;
     private int resourceid;
-    
-    public TaskAdpter(Context context, List<TaskBean> list) {
+
+    public TaskAdapter(Context context, List<TaskBean> list) {
         this.list = list;
         this.context = context;
     }
@@ -69,7 +69,7 @@ public class TaskAdpter  extends BaseAdapter{
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        
+
         TaskBean taskBean = list.get(position);
 
         viewHolder.tvPeifang.setText("配方名称：" + taskBean.getPeifangming());
