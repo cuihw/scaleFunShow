@@ -56,6 +56,7 @@ public class AdjustActivity  extends Activity{
         textview_weight = (TextView)findViewById(R.id.textview_weight);
         // TScale.getInstence().setUnit();
         // TScale.getInstence().setMainUnitDeci(4);
+        // TScale.getInstence().reset();
 	}
 
 	public void onClick(View view){

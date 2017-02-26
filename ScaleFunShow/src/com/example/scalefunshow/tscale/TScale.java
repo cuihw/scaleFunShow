@@ -17,10 +17,12 @@ public class TScale {
 			instence = new TScale();
 			mScale = JNIScale.getScale();
 		}
-		
 		return instence;
 	}
 	
+	public static void reset(){
+		mScale = JNIScale.getScale();
+	}
 	
 	public String getWeight() {
  		 TScale.getInstence();

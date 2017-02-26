@@ -106,7 +106,7 @@
                     android:text="继续称量" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/tv_net_weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/net_weight"
