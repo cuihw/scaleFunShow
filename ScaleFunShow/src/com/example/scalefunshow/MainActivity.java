@@ -61,7 +61,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			"100"/* ,"500" */};
 	private static final String[] arrZtrack = { "OFF", "0.5 d", "1 d", "2 d",
 			"4 d" };
-
+	private static final String TAG = "MainActivity";
+	
 	private boolean mZeroFlg;
 	private boolean mStabFlg;
 	private boolean mTareFlg;
@@ -207,9 +208,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		serialUtil = new SerialUtil();
 		scaleBuzzer = new ScaleBuzzer(null);
 //		
-		Log.d("JNIScale.getScale()====================", "==start============");
+		Log.d(TAG, "==start============");
 		mScale = JNIScale.getScale();
-		Log.d("JNIScale.getScale()====================", "===end===========");		
+		Log.d(TAG, "===end===========");
 		
 		et_calload = (EditText) findViewById(R.id.et_calload);
 		et_cap1 = (EditText) findViewById(R.id.et_cap1);
@@ -219,10 +220,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		tv_cap2 = (TextView) findViewById(R.id.tv_cap2);
 		tv_div2 = (TextView) findViewById(R.id.tv_div2);	
 					     
-		Log.d("JNIScale.getScale()=000================", "==start============");
+		Log.d(TAG, "==start============");
 		mScale.reloadPara();
 		initFull();
-		Log.d("JNIScale.getScale()=111================", "==start============");
+		Log.d(TAG, "==start============");
 	
 		et_cap1.setOnEditorActionListener(new TextView.OnEditorActionListener() {  			             
 			@Override  

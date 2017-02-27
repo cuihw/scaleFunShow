@@ -17,7 +17,6 @@ public class AutoUpdate {
         PackageInfo packageInfo = pm.getPackageArchiveInfo(apk_path, PackageManager.GET_ACTIVITIES);
         int version = packageInfo.versionCode;
         ApplicationInfo appInfo = packageInfo.applicationInfo;
-
         return false;
     }
 }

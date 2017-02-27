@@ -14,10 +14,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
@@ -67,6 +70,7 @@ public class TaskActivity extends Activity {
         back = (Button) findViewById(R.id.back);
         countius = (Button) findViewById(R.id.countius);
         countEdit = (EditText) findViewById(R.id.count);
+        Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
 
         peifangnames = getResources().getStringArray(R.array.peifang);
         jiaobanjihao = getResources().getStringArray(R.array.jiaobanjihao);

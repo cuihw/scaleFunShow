@@ -6,7 +6,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.text.InputType;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 
 public class Utils {
@@ -37,5 +40,19 @@ public class Utils {
 		}
 
 		activity.getWindow().getDecorView().setSystemUiVisibility(uiFlags);
+	}
+
+	public static void hideEditTextIMM(final Context context, final EditText editText) {
+		editText.setInputType(InputType.TYPE_NULL);
+		editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					InputMethodManager imm = (InputMethodManager)context.getSystemService
+						(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(editText.getWindowToken(),0);
+				}
+			}
+		});
 	}
 }
