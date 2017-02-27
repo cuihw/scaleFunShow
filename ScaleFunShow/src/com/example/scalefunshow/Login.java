@@ -17,11 +17,9 @@ public class Login extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		Utils.hideNavigationBar(this);
         setContentView(R.layout.activity_login);
-        
         person_id = (EditText)findViewById(R.id.person_id);
         password = (EditText)findViewById(R.id.password);
 	}

@@ -76,8 +76,6 @@ public class WorkingActivity extends Activity {
 
     RelativeLayout  weightLayout;
     
-    //android.R.layout.simple_expandable_list_item_1
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -100,13 +98,19 @@ public class WorkingActivity extends Activity {
 
 	private void initChengliangListView() {
 		Log.i(TAG, "initChengliangListView()" );
-		simpleAdapter = new SimpleAdapter(this,
-	    		cailiao ,android.R.layout.simple_expandable_list_item_1,
-	            new String[]{"tvname"},
-	            new int[]{android.R.id.text1});
+		simpleAdapter = getSimpleAdapter();
+
 	    listView2 = (ListView)findViewById(R.id.listView2);
 	    listView2.setAdapter(simpleAdapter);
 	}
+
+	private SimpleAdapter getSimpleAdapter() {
+		return new SimpleAdapter(this,
+			cailiao ,android.R.layout.simple_expandable_list_item_1,
+			new String[]{"tvname"},
+			new int[]{android.R.id.text1});
+	}
+
 
 	private void initMaterialView() {
 
@@ -152,14 +156,13 @@ public class WorkingActivity extends Activity {
 		Log.i(TAG, "initChengliang()" );
 		for (Material m:list) {
 			cailiao = new ArrayList<Map<String, String>>();
+			Log.i(TAG, "create material list, name = " + m.getName());
 			materialMap.put(m.getName(), cailiao);
 		}
  	}
 
 	protected void beginWeight(int position) {
 		Log.i(TAG, "beginWeight()" );
-		Material material = listMaterial.get(position);
-		String name = material.getName();
 		startWeightHandler(gross_weight);
 	}
 
@@ -169,6 +172,7 @@ public class WorkingActivity extends Activity {
 		currentIndex = position;
 		weight_of_skin_layout.setVisibility(View.VISIBLE);
 		startWeightHandler(weight_of_skin);
+		showCurrentChengzhong();
 	}
 
 	private void startWeightHandler(TextView agentView) {
@@ -198,19 +202,44 @@ public class WorkingActivity extends Activity {
 		} else if (countius_weight_btn == view) {
 			// 添加当前材料的称量记录。
 			addCaiLiao();
-			simpleAdapter.notifyDataSetChanged();
+
 			// 计算当前材料称量总重量。
+			showCurrentChengzhong();
 		}
 	}
 
+	private void showCurrentChengzhong(){
+		String name = listMaterial.get(currentIndex).getName();
+
+		cailiao = materialMap.get(name);
+
+		simpleAdapter = getSimpleAdapter();
+		listView2.setAdapter(simpleAdapter);
+	}
+
 	private void addCaiLiao() {
-		Log.i(TAG, "addCaiLiao()" );
-		cailiao = materialMap.get(listMaterial.get(currentIndex));
+
+		if (netweight < 0.01) {
+			Log.i(TAG, "addCaiLiao() net weight is to low.");
+			return;
+		}
+
+		String name = listMaterial.get(currentIndex).getName();
+		Log.i(TAG, "addCaiLiao() " + name);
+		cailiao = materialMap.get(name);
+
+		if (cailiao == null) {
+			Log.e(TAG, "addCaiLiao() cailiao list is null !!!!" );
+			return;
+		}
+
 		int times = cailiao.size();
 		times ++;
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("tvname", "第" + times + "称量： " + netweight + "克");
+		map.put("tvname", "第" + times + "次称量： " + netweight + "克");
 		map.put("netweight", "" + netweight);
+
+		Log.e(TAG, "第" + times + "次称量： " + netweight + "克" );
 		cailiao.add(map);
 	}
 

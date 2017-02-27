@@ -70,7 +70,7 @@ public class TaskActivity extends Activity {
         back = (Button) findViewById(R.id.back);
         countius = (Button) findViewById(R.id.countius);
         countEdit = (EditText) findViewById(R.id.count);
-        Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
+        //Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
 
         peifangnames = getResources().getStringArray(R.array.peifang);
         jiaobanjihao = getResources().getStringArray(R.array.jiaobanjihao);

@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:imeOptions="actionDone|flagNoExtractUi"
                 android:ems="10" />
         </TableRow>
 
@@ -47,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberPassword"
+                android:imeOptions="actionDone|flagNoExtractUi"
                 android:ems="10" >
             </EditText>
         </TableRow>
