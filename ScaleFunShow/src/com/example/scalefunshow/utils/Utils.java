@@ -6,10 +6,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.provider.Settings;
 import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
+import java.security.MessageDigest;
 
 
 public class Utils {
@@ -54,5 +57,39 @@ public class Utils {
 				}
 			}
 		});
+	}
+
+
+	public static String getDeviceId(Context context ) {
+		String deviceid = Settings.Secure.getString(context.getContentResolver(),
+			Settings.Secure.ANDROID_ID);
+		return deviceid;
+	}
+
+
+	public static String string2MD5(String inStr){
+		MessageDigest md5 = null;
+		try{
+			md5 = MessageDigest.getInstance("MD5");
+		}catch (Exception e){
+			System.out.println(e.toString());
+			e.printStackTrace();
+			return "";
+		}
+		byte[] byteArray = inStr.getBytes();
+		byte[] md5Bytes = md5.digest(byteArray);
+		return byte2String (md5Bytes);
+	}
+
+	public static String byte2String(byte[] data){
+
+		StringBuffer hexValue = new StringBuffer();
+		for (int i = 0; i < data.length; i++){
+			int val = ((int) data[i]) & 0xff;
+			if (val < 16)
+				hexValue.append("0");
+			hexValue.append(Integer.toHexString(val));
+		}
+		return hexValue.toString();
 	}
 }

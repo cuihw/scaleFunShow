@@ -15,7 +15,7 @@ import java.net.URL;
 public class HttpClass {
     private static final String TAG = "HttpClass";
 
-    private static final String REQUEST_ADDRESS = "http://192.168.22.242:7080/";
+    public static final String REQUEST_ADDRESS = "http://192.168.22.242:7080";
 
     public interface RequestListener {
         public void onResponse(String response);

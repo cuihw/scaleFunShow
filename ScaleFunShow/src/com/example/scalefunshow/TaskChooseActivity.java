@@ -21,7 +21,7 @@ import java.util.List;
 
 public class TaskChooseActivity extends Activity {
 
-	protected static final String TAG = "TaskChooseActivity";
+	private static final String TAG = "TaskChooseActivity";
 
 	GridView task_grid;
 
