@@ -8,13 +8,13 @@ public class ResponseBean {
     int status;
     String message;
     String token;
-    Object data;
+    String data;
 
-    public Object getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(String data) {
         this.data = data;
     }
 
