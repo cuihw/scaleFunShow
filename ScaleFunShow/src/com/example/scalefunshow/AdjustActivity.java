@@ -25,7 +25,7 @@ public class AdjustActivity  extends Activity{
 	Button button4;
 	Button button5;
 	Button confirm;
-	
+
 	Button currentButton;
 	
 	Button ok_button;
@@ -33,13 +33,14 @@ public class AdjustActivity  extends Activity{
 	
 	private boolean setOk;
 	TextView textview_weight;
+
+	float zeroAdjustWeight = 0;
 	
 	private static final boolean IS_ALREADY_ADJUST = true;
 	private static final String TAG = "AdjustActivity";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		ZzLog.i(TAG, "onCreate()....");
@@ -54,9 +55,6 @@ public class AdjustActivity  extends Activity{
         ok_button = (Button)findViewById(R.id.ok_button);
         zero = (Button)findViewById(R.id.zero);
         textview_weight = (TextView)findViewById(R.id.textview_weight);
-        // TScale.getInstence().setUnit();
-        // TScale.getInstence().setMainUnitDeci(4);
-        // TScale.getInstence().reset();
 	}
 
 	public void onClick(View view){
@@ -68,9 +66,8 @@ public class AdjustActivity  extends Activity{
 
 		if (ok_button == view) {
 			setOk = true;
-			ZzLog.i(TAG, "setok....");
+			ZzLog.i(TAG, "set ok....");
 			if (currentButton != null) {
-
 				ZzLog.i(TAG, "currentButton...." + currentButton.getText().toString());
 				currentButton.setTag(IS_ALREADY_ADJUST);
 				currentButton.setText("校准完成");
@@ -88,7 +85,7 @@ public class AdjustActivity  extends Activity{
 				boolean isAlearyAdjust3 = (Boolean)obj3;
 				boolean isAlearyAdjust4 = (Boolean)obj4;
 				boolean isAlearyAdjust5 = (Boolean)obj5;
-				
+
 				if (isAlearyAdjust1 && isAlearyAdjust2 && isAlearyAdjust3
 						&&isAlearyAdjust4 && isAlearyAdjust5) {
 					confirm.setVisibility(View.VISIBLE);
@@ -100,8 +97,8 @@ public class AdjustActivity  extends Activity{
 			startTask();
 		} else if (zero == view) {
 			TScale.getInstence().zero();
+			TScale.getInstence().startAdjustZeroWeight(textview_weight);
 		}
-		
 	}
 
 	private void startTask() {
@@ -124,9 +121,7 @@ public class AdjustActivity  extends Activity{
 
 	private void setOthersButton(Button button) {
 		
-
 		if (button1 != button) {
-
 			Object obj = button1.getTag();
 			if (obj != null) {
 				boolean isAlearyAdjust = (Boolean)obj;
@@ -194,22 +189,22 @@ public class AdjustActivity  extends Activity{
 				} else {
 					button5.setText("校准完成");
 				}
-			}else {
+			} else {
 				button5.setText("校准右下角");
 			}
 		}
 	}
 
-	Handler handler = new Handler(){
+	Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
  			super.handleMessage(msg);
  			
  			if(msg.what == GET_WEIGHT) {
- 				String weight = TScale.getInstence().getWeight();
+ 				float weight = TScale.getInstence().getWeight();
  				int deci = TScale.getInstence().getMainUnitDeci();
- 				textview_weight.setText(weight);
+ 				textview_weight.setText("" + weight);
 
 			    ZzLog.i(TAG, "read weight...." + weight + ", deci = " + deci);
  				if (!setOk) {
