@@ -71,11 +71,19 @@ public class Login extends Activity {
 
 	private void parserResponse(String response) {
 		Gson gson = new Gson();
-		ResponseBean responseBean = gson.fromJson(response, ResponseBean.class);
-		int status = responseBean.getStatus();
-		if (status == 0) {
-			Log.i(TAG, "登录成功。");
+		ResponseBean responseBean = null;
+		try{
+    		responseBean = gson.fromJson(response, ResponseBean.class);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
+
+		if (responseBean != null) {
+			int status = responseBean.getStatus();
+			if (status == 0) {
+				Log.i(TAG, "登录成功。");
+			}
+    	}
 	}
 	
 }

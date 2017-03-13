@@ -2,6 +2,7 @@ package com.example.scalefunshow.tscale;
 
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.tscale.scalelib.jniscale.JNIScale;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TScale {
+	private static final String TAG = "TScale";
 	private static TScale instence;
 	
 	private static JNIScale mScale;
@@ -63,8 +65,13 @@ public class TScale {
 		if (TextUtils.isEmpty(temp)) {
 			return 0;
 		}
-		weight = Float.parseFloat(temp);
-		weight = weight - floatAdjustWeight.get(0);
+		try {
+			weight = Float.parseFloat(temp);
+			weight = weight - floatAdjustWeight.get(0);
+		} catch (Exception e) {
+			Log.i(TAG, "weight = " + temp);
+		}
+
 		return weight;
 	}
 

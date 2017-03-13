@@ -30,6 +30,4 @@ public interface APIServices {
 
     @POST("/taskDetail")
     Call<ResponseBean> taskDetail(@Body GetParameter bean);
-
-
 }

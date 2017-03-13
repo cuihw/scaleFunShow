@@ -59,7 +59,7 @@ public class WorkingActivity extends Activity {
 	TextView tv_net_weight;
 	
 	//读取当前称量的重量
-	String weight ;
+	float weight ;
 	float floatWeight;
 	float skinWeight;
 	float netweight;
@@ -258,11 +258,8 @@ public class WorkingActivity extends Activity {
  			
  			if(msg.what == GET_WEIGHT) {
  				weight = TScale.getInstence().getWeight();
- 				try{
- 	 				floatWeight = Float.parseFloat(weight);
- 				} catch (Exception e) {
- 					e.printStackTrace();
- 				}
+ 	 			floatWeight = weight;
+
  				if (agentWeightView != null) {
  	 				
  	 				if (agentWeightView == weight_of_skin) {

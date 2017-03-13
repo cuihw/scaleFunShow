@@ -94,7 +94,6 @@ public class FoodAdapter extends BaseAdapter {
 	}
 
 	static class ViewHolder {
-
 		public TextView tvPeifang;
 		public TextView tvcount;
 	}
