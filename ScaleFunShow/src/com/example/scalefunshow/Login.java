@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -29,6 +30,12 @@ public class Login extends Activity {
         person_id = (EditText)findViewById(R.id.person_id);
         password = (EditText)findViewById(R.id.password);
 
+	}
+
+	@Override
+	protected void onResume() {
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		super.onResume();
 	}
 
 	public void onClick(View view) {

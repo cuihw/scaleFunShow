@@ -247,9 +247,6 @@ public class WorkingActivity extends Activity {
 		isStop = true;
 	}
 
-
-
-	@SuppressLint("HandlerLeak")
 	Handler handler = new Handler(){
 
 		@Override
@@ -281,4 +278,9 @@ public class WorkingActivity extends Activity {
 		}
 	};
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		stopWeight();
+	}
 }

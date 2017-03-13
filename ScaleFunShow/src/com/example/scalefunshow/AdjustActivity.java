@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdjustActivity  extends Activity{
 	// 五点校准界面。
 
@@ -35,6 +38,8 @@ public class AdjustActivity  extends Activity{
 	TextView textview_weight;
 
 	float zeroAdjustWeight = 0;
+
+	List<Float> adjustPointList = new ArrayList<Float>(30);
 	
 	private static final boolean IS_ALREADY_ADJUST = true;
 	private static final String TAG = "AdjustActivity";
@@ -97,6 +102,7 @@ public class AdjustActivity  extends Activity{
 			startTask();
 		} else if (zero == view) {
 			TScale.getInstence().zero();
+			Log.i(TAG, "textview_weight");
 			TScale.getInstence().startAdjustZeroWeight(textview_weight);
 		}
 	}
@@ -214,6 +220,10 @@ public class AdjustActivity  extends Activity{
 		}
 	};
 
-	
-	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// stop handler message
+		setOk = true;
+	}
 }
