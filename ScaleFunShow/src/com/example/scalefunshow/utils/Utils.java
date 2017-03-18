@@ -5,6 +5,10 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.InputType;
@@ -12,7 +16,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import java.io.IOException;
 import java.security.MessageDigest;
+
+import com.example.scalefunshow.R;
 
 
 public class Utils {
@@ -32,15 +39,15 @@ public class Utils {
 				| View.SYSTEM_UI_FLAG_FULLSCREEN  // hide status bar
 		        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
-//		if (android.os.Build.VERSION.SDK_INT >= 19) {
-//			uiFlags |= 0x00001000; // SYSTEM_UI_FLAG_IMMERSIVE_STICKY: hide
-//									// navigation bars - compatibility: building
-//									// API level is lower thatn 19, use magic
-//									// number directly for higher API target
-//									// level
-//		} else {
-//			uiFlags |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
-//		}
+		if (android.os.Build.VERSION.SDK_INT >= 19) {
+			uiFlags |= 0x00001000; // SYSTEM_UI_FLAG_IMMERSIVE_STICKY: hide
+									// navigation bars - compatibility: building
+									// API level is lower thatn 19, use magic
+									// number directly for higher API target
+									// level
+		} else {
+			uiFlags |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
+		}
 
 		activity.getWindow().getDecorView().setSystemUiVisibility(uiFlags);
 	}
@@ -65,7 +72,6 @@ public class Utils {
 			Settings.Secure.ANDROID_ID);
 		return deviceid;
 	}
-
 
 	public static String string2MD5(String inStr){
 		MessageDigest md5 = null;
@@ -92,4 +98,5 @@ public class Utils {
 		}
 		return hexValue.toString();
 	}
+ 
 }

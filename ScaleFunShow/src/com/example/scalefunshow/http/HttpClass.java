@@ -26,20 +26,7 @@ public class HttpClass {
 
     public static void startRequest(final String path,
          final String parameter,  final RequestListener listener) {
-
-//        Thread requestThread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                String response = post(path, parameter);
-//                if (listener != null) {
-//                    listener.onResponse(response);
-//                }
-//            }
-//        });
-//        requestThread.start();
-//        new RequestTask(listener).executeOnExecutor(THREAD_POOL_EXECUTOR,
-//            path, parameter);
-        new RequestTask(listener).execute(path, parameter);
+         new RequestTask(listener).execute(path, parameter);
     }
 
 
@@ -87,7 +74,7 @@ public class HttpClass {
             url = new URL(path);
             Log.i(TAG, "parameter = " + parameter);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setConnectTimeout(10000);
+            conn.setConnectTimeout(5000);
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("ser-Agent", "Fiddler");

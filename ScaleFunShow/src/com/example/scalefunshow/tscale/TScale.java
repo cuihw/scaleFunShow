@@ -30,7 +30,17 @@ public class TScale {
 	float weight;
 	boolean isStop = false;
 
-	public void startWeight(final String preText, final String suffix, final TextView view) {
+	float adjustZeroWeight = 0;
+
+	public float getAdjustZeroWeight() {
+        return adjustZeroWeight;
+    }
+
+    public void setAdjustZeroWeight(float adjustZeroWeight) {
+        this.adjustZeroWeight = adjustZeroWeight;
+    }
+
+    public void startWeight(final String preText, final String suffix, final TextView view) {
 		mHandler = new Handler();
 		isStop = false;
 		mHandler.post(new Runnable() {
@@ -67,8 +77,7 @@ public class TScale {
 		}
 		try {
 			weight = Float.parseFloat(temp);
-			weight = weight - floatAdjustWeight.get(0);
-		} catch (Exception e) {
+ 		} catch (Exception e) {
 			Log.i(TAG, "weight = " + temp);
 		}
 
@@ -79,6 +88,7 @@ public class TScale {
 
 	public void startAdjustZeroWeight(final TextView view) {
 		view.setTag("OK");
+		adjustZeroWeight = 0;
 		mHandler = new Handler();
 		mHandler.postDelayed(new Runnable() {
 			@Override
@@ -88,6 +98,7 @@ public class TScale {
 				if (equalsItem(floatAdjustWeight)) {
 					Log.i(TAG, "completed set zero.");
 					view.setText("归零完成：" + 0 + "克");
+					adjustZeroWeight = floatAdjustWeight.get(0);
 				} else {
 					Log.i(TAG, "progress set zero.");
 					String tag = (String) view.getTag();
@@ -117,7 +128,11 @@ public class TScale {
 		Log.i(TAG, "floatWeight.size() = " + floatWeight.size());
 
 		for (int i = 1; i<floatWeight.size(); i++) {
-			if (floatWeight.get(i) != floatWeight.get(i-1)) {
+			float delta = floatWeight.get(i).floatValue() - floatWeight.get(i-1).floatValue();
+
+			Log.i(TAG, "delta = " + delta);
+			if (Math.abs(delta) > 0.1) {
+				Log.i(TAG, "floatWeight is not equals.");
 				return false;
 			}
 		}
