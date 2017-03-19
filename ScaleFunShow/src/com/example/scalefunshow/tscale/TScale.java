@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TScale {
+    public  interface ZeroAdjustListener {
+        public void onFinish();
+    }
+    
+    ZeroAdjustListener listener;
+    
 	private static final String TAG = "TScale";
 	private static TScale instence;
 	
@@ -86,8 +92,9 @@ public class TScale {
 
 	List<Float> floatAdjustWeight = new ArrayList<Float>(4);
 
-	public void startAdjustZeroWeight(final TextView view) {
+	public void startAdjustZeroWeight(final TextView view, final ZeroAdjustListener listener) {
 		view.setTag("OK");
+		this.listener = listener;
 		adjustZeroWeight = 0;
 		mHandler = new Handler();
 		mHandler.postDelayed(new Runnable() {
@@ -99,6 +106,9 @@ public class TScale {
 					Log.i(TAG, "completed set zero.");
 					view.setText("归零完成：" + 0 + "克");
 					adjustZeroWeight = floatAdjustWeight.get(0);
+					if (listener != null) {
+					    listener.onFinish();
+					}
 				} else {
 					Log.i(TAG, "progress set zero.");
 					String tag = (String) view.getTag();

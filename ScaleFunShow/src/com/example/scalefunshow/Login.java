@@ -88,7 +88,7 @@ public class Login extends Activity {
                 new HttpClass.RequestListener() {
                     @Override
                     public void onResponse(String response) {
-                        
+
                         if (TextUtils.isEmpty(response)) {
                             Log.i(TAG, "response = null");
                             LoadLocalPerson();
@@ -103,7 +103,7 @@ public class Login extends Activity {
         PersonBean person = new PersonBean();
         person.setC_ryxm("张强");
     }
-
+    
     private void parserResponse(String response) {
         Gson gson = new Gson();
         ResponseBean responseBean = null;
@@ -122,3 +122,5 @@ public class Login extends Activity {
     }
 
 }
+
+

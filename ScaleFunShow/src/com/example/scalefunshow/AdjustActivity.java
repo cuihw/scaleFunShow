@@ -2,6 +2,7 @@ package com.example.scalefunshow;
 
 import com.example.scalefunshow.utils.Utils;
 import com.example.scalefunshow.tscale.TScale;
+import com.example.scalefunshow.tscale.TScale.ZeroAdjustListener;
 import com.example.scalefunshow.utils.ZzLog;
 
 import android.app.Activity;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,8 @@ public class AdjustActivity extends Activity {
     TextView textview_weight;
 
     float zeroAdjustWeight = 0;
+    
+    float famaZhiliang = 0;
 
     List<Float> adjustPointList = new ArrayList<Float>();
 
@@ -63,6 +67,21 @@ public class AdjustActivity extends Activity {
         ok_button.setVisibility(View.GONE);
         zero = (Button) findViewById(R.id.zero);
         textview_weight = (TextView) findViewById(R.id.textview_weight);
+        
+        Toast.makeText(this, "正在归零中，请稍后.....", Toast.LENGTH_SHORT).show(); 
+
+        TScale.getInstence().zero();
+        Log.i(TAG, "textview_weight");
+        TScale.getInstence().startAdjustZeroWeight(textview_weight, new ZeroAdjustListener(){
+
+            @Override
+            public void onFinish() {
+                Toast.makeText(AdjustActivity.this, 
+                        "归零完成。", Toast.LENGTH_SHORT).show(); 
+
+            }
+            
+        });
      }
  
     public void onClick(View view) {
@@ -80,7 +99,7 @@ public class AdjustActivity extends Activity {
         } else if (zero == view) {
             TScale.getInstence().zero();
             Log.i(TAG, "textview_weight");
-            TScale.getInstence().startAdjustZeroWeight(textview_weight);
+            //TScale.getInstence().startAdjustZeroWeight(textview_weight);
         }
     }
 
@@ -93,6 +112,9 @@ public class AdjustActivity extends Activity {
     }
 
     private void adjust(Button button) {
+        if (currentButton == button) {
+            return;
+        }
         currentButton = button;
         button.setText("校准中......");
         adjustPointList.clear();
@@ -227,6 +249,7 @@ public class AdjustActivity extends Activity {
                         + currentButton.getText().toString());
                 currentButton.setTag(IS_ALREADY_ADJUST);
                 currentButton.setText("校准完成");
+                currentButton = null;
             }
 
             Object obj1 = button1.getTag();
@@ -255,9 +278,9 @@ public class AdjustActivity extends Activity {
             return false;
         }
         int size = adjustPointList2.size();
-        for (int i = (size -19); i < size; i++) {
+        for (int i = (size - 20); i < size; i++) {
 
-            float delta = adjustPointList2.get(i) - adjustPointList2.get(i-1);
+            float delta = adjustPointList2.get(i) - famaZhiliang;
             Log.i(TAG, "delta = " + delta);
             if (Math.abs(delta) > 0.5){
                 return false;

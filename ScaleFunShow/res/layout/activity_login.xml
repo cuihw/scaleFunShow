@@ -2,15 +2,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#113355"
+    android:background="@drawable/background"
     tools:context="com.example.scalefunshow.Login" >
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:onClick="onClick"
+        android:text="登录" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="162dp"
+        android:layout_height="21dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/slogon" />
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -27,9 +45,12 @@
                 android:id="@+id/person_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:ems="10"
                 android:imeOptions="actionDone|flagNoExtractUi"
-                android:ems="10" />
+                android:inputType="number" >
+
+                <requestFocus />
+            </EditText>
         </TableRow>
 
         <TableRow
@@ -47,22 +68,19 @@
                 android:id="@+id/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"
+                android:ems="10"
                 android:imeOptions="actionDone|flagNoExtractUi"
-                android:ems="10" >
-            </EditText>
+                android:inputType="numberPassword" />
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tableLayout1"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="131dp"
+        android:layout_height="71dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:onClick="onClick"
-        android:text="登录" />
-
+        android:layout_marginTop="30dp"
+        android:background="@drawable/logo" />
 
 </RelativeLayout>
