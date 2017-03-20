@@ -1,13 +1,7 @@
 package com.example.scalefunshow;
 
-import com.example.scalefunshow.utils.Utils;
-import com.example.scalefunshow.tscale.TScale;
-import com.example.scalefunshow.tscale.TScale.ZeroAdjustListener;
-import com.example.scalefunshow.utils.ZzLog;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -20,6 +14,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.scalefunshow.tscale.TScale;
+import com.example.scalefunshow.tscale.TScale.ZeroAdjustListener;
+import com.example.scalefunshow.utils.Utils;
+import com.example.scalefunshow.utils.ZzLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +45,7 @@ public class AdjustActivity extends Activity {
 
     List<Float> adjustPointList = new ArrayList<Float>();
 
-    private static final boolean IS_ALREADY_ADJUST = true;
+    private static boolean IS_ALREADY_ADJUST = false;
     private static final String TAG = "AdjustActivity";
 
     @Override
@@ -61,19 +60,26 @@ public class AdjustActivity extends Activity {
 
         textview_weight = (TextView) findViewById(R.id.textview_weight);
         hint = (TextView) findViewById(R.id.hint);
-        Toast.makeText(this, "正在归零中，请稍后.....", Toast.LENGTH_SHORT).show(); 
 
-        TScale.getInstence().zero();
-        Log.i(TAG, "textview_weight");
-        TScale.getInstence().startAdjustZeroWeight(textview_weight, new ZeroAdjustListener(){
-            @Override
-            public void onFinish() {
-                Toast.makeText(AdjustActivity.this, "归零完成。", Toast.LENGTH_SHORT).show();
-                beginAdjust();
-            }
-        });
+        if (IS_ALREADY_ADJUST) {
+            // goto the task activity.
+        } else {
+            Toast.makeText(this, "正在归零中，请稍后.....", Toast.LENGTH_SHORT).show();
+            zeroAdjustWeight = TScale.getInstence().getAdjustZeroWeight();
+            TScale.getInstence().zero();
+            Log.i(TAG, "textview_weight");
+            // 开始校准......
+            TScale.getInstence().startAdjustZeroWeight(textview_weight, new ZeroAdjustListener(){
+                @Override
+                public void onFinish() {
+                    Toast.makeText(AdjustActivity.this, "归零完成。", Toast.LENGTH_SHORT).show();
+                    beginAdjust();
+                }
+            });
 
-        zeroAdjustWeight = TScale.getInstence().getAdjustZeroWeight();
+        }
+
+
     }
 
     private void beginAdjust() {
@@ -179,6 +185,7 @@ public class AdjustActivity extends Activity {
 
         if (adjustPoint == 5) {
             confirm.setVisibility(View.VISIBLE);
+            IS_ALREADY_ADJUST = true;
         } else {
             adjustPoint ++;
             showHintDialog(adjustPoint);
