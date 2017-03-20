@@ -14,8 +14,8 @@
 
         <ImageView
             android:src="@drawable/adjust_1_0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_centerInParent="true"
             android:id="@+id/adjust_imageview"/>
 
@@ -28,80 +28,6 @@
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
             android:id="@+id/hint"/>
-
-        <Button
-            android:id="@+id/button_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:onClick="onClick"
-            android:paddingBottom="30dp"
-            android:paddingTop="20dp"
-            android:text="校准左上角"
-            android:visibility="invisible"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/button_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button_1"
-            android:layout_alignBottom="@+id/button_1"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
-            android:onClick="onClick"
-            android:paddingBottom="30dp"
-            android:paddingTop="20dp"
-            android:text="校准右上角"
-            android:visibility="invisible"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/button_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:onClick="onClick"
-            android:paddingBottom="30dp"
-            android:paddingTop="20dp"
-            android:paddingRight="30dp"
-            android:paddingLeft="30dp"
-            android:text="校准中间"
-            android:visibility="invisible"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/button_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/button_1"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="40dp"
-            android:onClick="onClick"
-            android:paddingBottom="30dp"
-            android:paddingTop="20dp"
-            android:text="校准左下角"
-            android:visibility="invisible"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/button_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/button_4"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
-            android:onClick="onClick"
-            android:paddingBottom="30dp"
-            android:paddingTop="20dp"
-            android:text="校准右下角"
-            android:visibility="invisible"
-            android:textSize="20sp" />
-
 
     </RelativeLayout>
 

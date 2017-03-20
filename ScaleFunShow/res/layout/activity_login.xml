@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/login_layout"
-        android:layout_width="500dp"
+        android:layout_width="450dp"
         android:layout_height="match_parent">
 
         <ImageView
@@ -85,7 +85,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:imeOptions="actionDone|flagNoExtractUi"
                     android:inputType="numberPassword" />
             </TableRow>
         </TableLayout>
@@ -211,7 +210,7 @@
             <Button
                 android:text="删除"
                 android:layout_width="110dp"
-                android:layout_height="60dp"
+                android:layout_height="80dp"
                 android:background="@drawable/number_button"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -230,7 +229,7 @@
             <Button
                 android:text="确定"
                 android:layout_width="105dp"
-                android:layout_height="60dp"
+                android:layout_height="80dp"
                 android:background="@drawable/number_button"
                 android:textColor="@color/white"
                 android:textSize="30sp"

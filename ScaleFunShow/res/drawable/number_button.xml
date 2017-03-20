@@ -4,13 +4,13 @@
     <!-- 默认时的背景图片 -->
     <item android:drawable="@drawable/button"/>
     <!-- 非触摸模式下获得焦点并单击时的背景图片 -->
-    <item android:drawable="@drawable/button" android:state_focused="true" android:state_pressed="true"/>
-    <!-- 触摸模式下单击时的背景图片 -->
-    <item android:drawable="@drawable/button_pressed" android:state_focused="false"
-          android:state_pressed="true"/>
-    <!-- 选中时的图片背景 -->
-    <item android:drawable="@drawable/button_pressed" android:state_selected="true"/>
-    <!-- 获得焦点时的图片背景 -->
-    <item android:drawable="@drawable/button_pressed" android:state_focused="true"/>
+<!-- 这个是按下时的效果 -->
 
+    <item android:state_enabled="true" android:state_pressed="true"
+
+        android:drawable="@drawable/button_pressed"/>
+
+    <!-- 以下为正常状态的效果 -->
+
+    <item android:state_enabled="true"  android:drawable="@drawable/button"></item>
 </selector>

@@ -15,6 +15,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -72,6 +73,29 @@ public class Login extends Activity {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(person_id.getWindowToken(),0);
         imm.hideSoftInputFromWindow(password.getWindowToken(),0);
+        person_id.setInputType(InputType.TYPE_NULL);
+        person_id.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService
+                        (Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(person_id.getWindowToken(),0);
+                }
+            }
+        });
+        password.setInputType(InputType.TYPE_NULL);
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService
+                        (Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(password.getWindowToken(),0);
+                }
+            }
+        });
+        
         Log.i(TAG, "onCreate...");
         playFinish(this);
 
@@ -141,6 +165,7 @@ public class Login extends Activity {
         //http://blog.csdn.net/zhuyb829/article/details/49178563
         Editable editable = currentEdit.getText();
         int start = currentEdit.getSelectionStart();
+        if (start < 0) start = 0;
         switch (view.getId()) {
             case R.id.button0:
                 editable.insert(start, "0");
@@ -173,13 +198,12 @@ public class Login extends Activity {
                 editable.insert(start, "9");
                 break;
             case R.id.button_ok:
-                //nextFocus();
                 if (currentEdit == person_id) {
                     password.requestFocus();
                 }
                 break;
             case R.id.button_delete:
-                editable.delete(start - 1, start);
+                if (start > 0) editable.delete(start - 1, start);
                 break;
         }
     }

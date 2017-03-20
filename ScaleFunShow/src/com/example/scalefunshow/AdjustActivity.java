@@ -65,7 +65,6 @@ public class AdjustActivity extends Activity {
             // goto the task activity.
         } else {
             Toast.makeText(this, "正在归零中，请稍后.....", Toast.LENGTH_SHORT).show();
-            zeroAdjustWeight = TScale.getInstence().getAdjustZeroWeight();
             TScale.getInstence().zero();
             Log.i(TAG, "textview_weight");
             // 开始校准......
@@ -73,6 +72,7 @@ public class AdjustActivity extends Activity {
                 @Override
                 public void onFinish() {
                     Toast.makeText(AdjustActivity.this, "归零完成。", Toast.LENGTH_SHORT).show();
+                    zeroAdjustWeight = TScale.getInstence().getAdjustZeroWeight();
                     beginAdjust();
                 }
             });
@@ -88,7 +88,7 @@ public class AdjustActivity extends Activity {
     }
 
     private void showHintDialog(final int point) {
-
+        // 
         new AlertDialog.Builder(this)
             .setTitle("开始校验")
             .setMessage("请把砝码放在位置" + point + " 开始校验" + point + "号位置。")
@@ -109,10 +109,22 @@ public class AdjustActivity extends Activity {
         handler.sendEmptyMessage(GET_WEIGHT);
     }
 
-
     private void playAnmi(int point, ImageView imageView) {
+        int resid = R.drawable.adjust_1;
+        if (point == 1) {
+            resid = R.drawable.adjust_1;
+        } else if (point == 2) {
+            resid = R.drawable.adjust_2;
+        } else if (point == 3) {
+            resid = R.drawable.adjust_3;
+        } else if (point == 4) {
+            resid = R.drawable.adjust_4;
+        } else if (point == 5) {
+            resid = R.drawable.adjust_5;
+        }
+        
         animationDrawable = (AnimationDrawable) this.getResources()
-            .getDrawable(R.drawable.adjust_1);
+            .getDrawable(resid);
         imageView.setImageDrawable(animationDrawable);
         animationDrawable.start();
     }
