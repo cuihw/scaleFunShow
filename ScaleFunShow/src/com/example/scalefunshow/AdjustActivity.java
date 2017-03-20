@@ -7,6 +7,7 @@ import com.example.scalefunshow.utils.ZzLog;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.ToneGenerator;
@@ -16,11 +17,14 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.scalefunshow.R.id.imageView1;
 
 public class AdjustActivity extends Activity {
     // 五点校准界面。
@@ -73,25 +77,25 @@ public class AdjustActivity extends Activity {
         TScale.getInstence().zero();
         Log.i(TAG, "textview_weight");
         TScale.getInstence().startAdjustZeroWeight(textview_weight, new ZeroAdjustListener(){
-
             @Override
             public void onFinish() {
-                Toast.makeText(AdjustActivity.this, 
-                        "归零完成。", Toast.LENGTH_SHORT).show(); 
-
+                Toast.makeText(AdjustActivity.this, "归零完成。", Toast.LENGTH_SHORT).show();
             }
-            
         });
-     }
+    }
+
+    private void playAnmi(int point, ImageView imageView) {
+        AnimationDrawable animationDrawable = (AnimationDrawable) this.getResources()
+            .getDrawable(R.drawable.adjust_1);
+        imageView.setImageDrawable(animationDrawable);
+        animationDrawable.start();
+    }
  
     public void onClick(View view) {
         if (view == button1 || view == button2 || view == button3
                 || view == button4 || view == button5) {
             // 校准
             adjust((Button) view);
-        }
-
-        if (ok_button == view) {
         }
 
         if (confirm == view) {
