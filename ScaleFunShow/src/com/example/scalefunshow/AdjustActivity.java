@@ -36,7 +36,7 @@ public class AdjustActivity extends Activity {
     TextView textview_weight;
     TextView hint;
 
-    float zeroAdjustWeight = 0;
+    static float zeroAdjustWeight = 0;
 
     float famaZhiliang = 0; // 使用的砝码重量
 
@@ -72,6 +72,8 @@ public class AdjustActivity extends Activity {
                 beginAdjust();
             }
         });
+
+        zeroAdjustWeight = TScale.getInstence().getAdjustZeroWeight();
     }
 
     private void beginAdjust() {
@@ -130,8 +132,7 @@ public class AdjustActivity extends Activity {
 
             if (msg.what == GET_WEIGHT) {
                 float weight = TScale.getInstence().getWeight();
-                int deci = TScale.getInstence().getMainUnitDeci();
-                weight = weight - TScale.getInstence().getAdjustZeroWeight();
+                weight = weight - zeroAdjustWeight;
                 adjustPointList.add(weight);
 
                 boolean isfinished = isAdjustFinished(adjustPointList);
@@ -146,9 +147,9 @@ public class AdjustActivity extends Activity {
                     textview_weight.setText("校准中......" + weight);
                 }
 
-                ZzLog.i(TAG, "read weight...." + weight + ", deci = " + deci);
+                ZzLog.i(TAG, "read weight...." + weight);
                 if (!setOk) {
-                    handler.sendEmptyMessageDelayed(GET_WEIGHT, 1000);
+                    handler.sendEmptyMessageDelayed(GET_WEIGHT, 400);
                 }
             }
         }
