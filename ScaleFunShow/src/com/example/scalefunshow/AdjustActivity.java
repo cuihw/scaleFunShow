@@ -6,11 +6,11 @@ import com.example.scalefunshow.tscale.TScale.ZeroAdjustListener;
 import com.example.scalefunshow.utils.ZzLog;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.AudioManager;
-import android.media.SoundPool;
-import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,30 +24,25 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.scalefunshow.R.id.imageView1;
-
 public class AdjustActivity extends Activity {
     // 五点校准界面。
 
     private static final int GET_WEIGHT = 1;
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
-    Button button5;
     Button confirm;
 
     Button currentButton;
 
-    Button ok_button;
-    Button zero;
-
     private boolean setOk;
     TextView textview_weight;
+    TextView hint;
 
     float zeroAdjustWeight = 0;
-    
-    float famaZhiliang = 0;
+
+    float famaZhiliang = 0; // 使用的砝码重量
+
+    ImageView adjust_imageview;
+    AnimationDrawable animationDrawable;
+    int adjustPoint;
 
     List<Float> adjustPointList = new ArrayList<Float>();
 
@@ -61,17 +56,11 @@ public class AdjustActivity extends Activity {
         ZzLog.i(TAG, "onCreate()....");
         Utils.hideNavigationBar(this);
         setContentView(R.layout.activity_adjust);
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
         confirm = (Button) findViewById(R.id.confirm);
-        ok_button = (Button) findViewById(R.id.ok_button);
-        ok_button.setVisibility(View.GONE);
-        zero = (Button) findViewById(R.id.zero);
+        adjust_imageview  = (ImageView) findViewById(R.id.adjust_imageview);
+
         textview_weight = (TextView) findViewById(R.id.textview_weight);
-        
+        hint = (TextView) findViewById(R.id.hint);
         Toast.makeText(this, "正在归零中，请稍后.....", Toast.LENGTH_SHORT).show(); 
 
         TScale.getInstence().zero();
@@ -80,30 +69,49 @@ public class AdjustActivity extends Activity {
             @Override
             public void onFinish() {
                 Toast.makeText(AdjustActivity.this, "归零完成。", Toast.LENGTH_SHORT).show();
+                beginAdjust();
             }
         });
     }
 
+    private void beginAdjust() {
+        int point = 1;
+        showHintDialog(point);
+    }
+
+    private void showHintDialog(final int point) {
+
+        new AlertDialog.Builder(this)
+            .setTitle("开始校验")
+            .setMessage("请把砝码放在位置" + point + " 开始校验" + point + "号位置。")
+            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startAdjustPoint(point);
+                }
+            }).show();
+    }
+
+    private void startAdjustPoint(int point) {
+        adjustPoint = point;
+        hint.setText("目前正在校验的点位是：" + point + "号位");
+        playAnmi(point, adjust_imageview);
+        adjustPointList.clear();
+        setOk = false;
+        handler.sendEmptyMessage(GET_WEIGHT);
+    }
+
+
     private void playAnmi(int point, ImageView imageView) {
-        AnimationDrawable animationDrawable = (AnimationDrawable) this.getResources()
+        animationDrawable = (AnimationDrawable) this.getResources()
             .getDrawable(R.drawable.adjust_1);
         imageView.setImageDrawable(animationDrawable);
         animationDrawable.start();
     }
  
     public void onClick(View view) {
-        if (view == button1 || view == button2 || view == button3
-                || view == button4 || view == button5) {
-            // 校准
-            adjust((Button) view);
-        }
-
         if (confirm == view) {
             startTask();
-        } else if (zero == view) {
-            TScale.getInstence().zero();
-            Log.i(TAG, "textview_weight");
-            //TScale.getInstence().startAdjustZeroWeight(textview_weight);
         }
     }
 
@@ -114,96 +122,6 @@ public class AdjustActivity extends Activity {
         startActivity(intent);
         finish();
     }
-
-    private void adjust(Button button) {
-        if (currentButton == button) {
-            return;
-        }
-        currentButton = button;
-        button.setText("校准中......");
-        adjustPointList.clear();
-        // 如果其他的点也显示校准中，回复为原来的未校准状态。
-        setOthersButton(button);
-        setOk = false;
-        handler.sendEmptyMessage(GET_WEIGHT);
-    }
-
-    private void setOthersButton(Button button) {
-
-        if (button1 != button) {
-            Object obj = button1.getTag();
-            if (obj != null) {
-                boolean isAlearyAdjust = (Boolean) obj;
-                if (!isAlearyAdjust) {
-                    button1.setText("校准左上角");
-                } else {
-                    button1.setText("校准完成");
-                }
-            } else {
-                button1.setText("校准左上角");
-            }
-        }
-
-        if (button2 != button) {
-
-            Object obj = button2.getTag();
-            if (obj != null) {
-                boolean isAlearyAdjust = (Boolean) obj;
-                if (!isAlearyAdjust) {
-                    button2.setText("校准右上角");
-                } else {
-                    button2.setText("校准完成");
-                }
-            } else {
-                button2.setText("校准右上角");
-            }
-        }
-
-        if (button3 != button) {
-            Object obj = button3.getTag();
-            if (obj != null) {
-                boolean isAlearyAdjust = (Boolean) button3.getTag();
-                if (!isAlearyAdjust) {
-                    button3.setText("校准中间");
-                } else {
-                    button3.setText("校准完成");
-                }
-            } else {
-                button3.setText("校准中间");
-            }
-        }
-
-        if (button4 != button) {
-            Object obj = button4.getTag();
-            if (obj != null) {
-                boolean isAlearyAdjust = (Boolean) button4.getTag();
-                if (!isAlearyAdjust) {
-                    button4.setText("校准左下角");
-                } else {
-                    button4.setText("校准完成");
-                }
-            } else {
-                button4.setText("校准左下角");
-            }
-
-        }
-
-        if (button5 != button) {
-
-            Object obj = button5.getTag();
-            if (obj != null) {
-                boolean isAlearyAdjust = (Boolean) button5.getTag();
-                if (!isAlearyAdjust) {
-                    button5.setText("校准右下角");
-                } else {
-                    button5.setText("校准完成");
-                }
-            } else {
-                button5.setText("校准右下角");
-            }
-        }
-    }
-
     Handler handler = new Handler() {
 
         @Override
@@ -244,36 +162,25 @@ public class AdjustActivity extends Activity {
     }
 
     protected void setCurrentPointOk() {
-
         setOk = true;
-        if (currentButton != null) {
-            ZzLog.i(TAG, "set ok....");
-            if (currentButton != null) {
-                ZzLog.i(TAG, "currentButton...."
-                        + currentButton.getText().toString());
-                currentButton.setTag(IS_ALREADY_ADJUST);
-                currentButton.setText("校准完成");
-                currentButton = null;
-            }
+        animationDrawable.stop();
+        if (adjustPoint == 1) {
+            adjust_imageview.setImageResource(R.drawable.adjust_1_2);
+        } else if (adjustPoint == 2){
+            adjust_imageview.setImageResource(R.drawable.adjust_2_2);
+        } else if (adjustPoint == 3){
+            adjust_imageview.setImageResource(R.drawable.adjust_3_2);
+        } else if (adjustPoint == 4){
+            adjust_imageview.setImageResource(R.drawable.adjust_4_2);
+        } else if (adjustPoint == 5){
+            adjust_imageview.setImageResource(R.drawable.adjust_5_2);
+        }
 
-            Object obj1 = button1.getTag();
-            Object obj2 = button2.getTag();
-            Object obj3 = button3.getTag();
-            Object obj4 = button4.getTag();
-            Object obj5 = button5.getTag();
-            if (obj1 != null && obj2 != null && obj3 != null && obj4 != null
-                    && obj5 != null) {
-                boolean isAlearyAdjust1 = (Boolean) obj1;
-                boolean isAlearyAdjust2 = (Boolean) obj2;
-                boolean isAlearyAdjust3 = (Boolean) obj3;
-                boolean isAlearyAdjust4 = (Boolean) obj4;
-                boolean isAlearyAdjust5 = (Boolean) obj5;
-
-                if (isAlearyAdjust1 && isAlearyAdjust2 && isAlearyAdjust3
-                        && isAlearyAdjust4 && isAlearyAdjust5) {
-                    confirm.setVisibility(View.VISIBLE);
-                }
-            }
+        if (adjustPoint == 5) {
+            confirm.setVisibility(View.VISIBLE);
+        } else {
+            adjustPoint ++;
+            showHintDialog(adjustPoint);
         }
     }
 
@@ -283,14 +190,12 @@ public class AdjustActivity extends Activity {
         }
         int size = adjustPointList2.size();
         for (int i = (size - 20); i < size; i++) {
-
             float delta = adjustPointList2.get(i) - famaZhiliang;
             Log.i(TAG, "delta = " + delta);
             if (Math.abs(delta) > 0.5){
                 return false;
             }
         }
-
         return true;
     }
 }

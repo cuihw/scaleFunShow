@@ -12,8 +12,25 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true" >
 
+        <ImageView
+            android:src="@drawable/adjust_1_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/adjust_imageview"/>
+
+        <TextView
+            android:text="@string/adjust_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/adjust_imageview"
+            android:paddingTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:id="@+id/hint"/>
+
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/button_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -24,24 +41,26 @@
             android:paddingBottom="30dp"
             android:paddingTop="20dp"
             android:text="校准左上角"
+            android:visibility="invisible"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button1"
-            android:layout_alignBottom="@+id/button1"
+            android:layout_alignBaseline="@+id/button_1"
+            android:layout_alignBottom="@+id/button_1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="40dp"
             android:onClick="onClick"
             android:paddingBottom="30dp"
             android:paddingTop="20dp"
             android:text="校准右上角"
+            android:visibility="invisible"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -52,33 +71,37 @@
             android:paddingRight="30dp"
             android:paddingLeft="30dp"
             android:text="校准中间"
+            android:visibility="invisible"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/button_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/button1"
+            android:layout_alignLeft="@+id/button_1"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="40dp"
             android:onClick="onClick"
             android:paddingBottom="30dp"
             android:paddingTop="20dp"
             android:text="校准左下角"
+            android:visibility="invisible"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/button4"
+            android:layout_alignBottom="@+id/button_4"
             android:layout_alignParentRight="true"
             android:layout_marginRight="40dp"
             android:onClick="onClick"
             android:paddingBottom="30dp"
             android:paddingTop="20dp"
             android:text="校准右下角"
+            android:visibility="invisible"
             android:textSize="20sp" />
+
 
     </RelativeLayout>
 
@@ -88,28 +111,26 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/relativeLayout1" >
 
-        <Button
-            android:id="@+id/zero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:textSize="30sp" 
-            android:padding="20dp"
-            android:onClick="onClick"
-            android:text="归零" />
-
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/fama_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/zero"
+            android:paddingTop="20dp"
             android:layout_marginTop="20dp"
-            android:text="砝碼重量:"
+            android:text="砝碼重量:500克"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <TextView
+            android:id="@+id/textview_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/fama_textView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="读取到的重量"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
         <Button
             android:id="@+id/confirm"
             android:layout_width="wrap_content"
@@ -119,33 +140,9 @@
             android:layout_marginBottom="30dp"
             android:onClick="onClick"
             android:visibility="invisible"
-            android:textSize="30sp" 
+            android:textSize="30sp"
             android:padding="20dp"
             android:text="全部校准完成" />
 
-        <TextView
-            android:id="@+id/textview_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/textView1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="读取到的重量"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <Button
-            android:id="@+id/ok_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/textview_weight"
-            android:layout_marginRight="10dp"
-            android:onClick="onClick"
-            android:padding="20dp"
-            android:text="确定"
-            android:textSize="30sp" />
-
     </RelativeLayout>
-
 </RelativeLayout>

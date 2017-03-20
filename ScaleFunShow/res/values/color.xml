@@ -4,13 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="operBarBackgroud">#80000000</color>
-
     <color name="operBarBackgroud1">#20000000</color>
     <color name="bgcolor">#E8EbEd</color>
-
     <color name="white">#ffffff</color>
     <color name="button_pressed">#cccccc</color>
     <color name="text_color">#999999</color>
+    <color name="black">#111111</color>
+
     <color name="orange_normal">#FFFF7F00</color>
     <color name="orange_yellow">#f39912</color>
 

@@ -5,82 +5,240 @@
     android:background="@drawable/background"
     tools:context="com.example.scalefunshow.Login" >
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tableLayout1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:onClick="onClick"
-        android:text="登录" />
+    <RelativeLayout
+        android:id="@+id/login_layout"
+        android:layout_width="500dp"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="162dp"
-        android:layout_height="21dp"
-        android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/slogon" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="131dp"
+            android:layout_height="71dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/logo" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="162dp"
+            android:layout_height="21dp"
+            android:layout_below="@+id/imageView1"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/slogon" />
+        <Button
+            android:id="@+id/login"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableLayout1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:onClick="onClick"
+            android:text="登录" >
+            <requestFocus/>
+        </Button>
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView2"
+            android:layout_centerHorizontal="true" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:text="工号：" />
+
+                <EditText
+                    android:id="@+id/person_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:nextFocusDown="@id/password"
+                    android:inputType="number" >
+                </EditText>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:text="密码：" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:inputType="numberPassword" />
+            </TableRow>
+        </TableLayout>
+
+    </RelativeLayout>
 
     <TableLayout
-        android:id="@+id/tableLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true" >
+        android:layout_toRightOf="@+id/login_layout"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="5dp">
 
         <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textview"
-                android:layout_width="wrap_content"
+            <Button
+                android:text="1"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
-                android:text="工号：" />
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button1"/>
 
-            <EditText
-                android:id="@+id/person_id"
-                android:layout_width="wrap_content"
+            <Button
+                android:text="2"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:imeOptions="actionDone|flagNoExtractUi"
-                android:inputType="number" >
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button2"/>
 
-                <requestFocus />
-            </EditText>
+            <Button
+                android:text="3"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button3"/>
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+            <Button
+                android:text="4"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
-                android:text="密码：" />
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button4"/>
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="wrap_content"
+            <Button
+                android:text="5"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:imeOptions="actionDone|flagNoExtractUi"
-                android:inputType="numberPassword" />
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button5"/>
+
+            <Button
+                android:text="6"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button6"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="7"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button7"/>
+
+            <Button
+                android:text="8"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button8"/>
+
+            <Button
+                android:text="9"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button9"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="删除"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button_delete"/>
+
+            <Button
+                android:text="0"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button0"/>
+            <Button
+                android:text="确定"
+                android:layout_width="105dp"
+                android:layout_height="60dp"
+                android:background="@drawable/number_button"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:onClick="onClickNumber"
+                android:id="@+id/button_ok"/>
         </TableRow>
     </TableLayout>
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="131dp"
-        android:layout_height="71dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/logo" />
 
 </RelativeLayout>
