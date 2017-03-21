@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/login_layout"
-        android:layout_width="450dp"
+        android:layout_width="420dp"
         android:layout_height="match_parent">
 
         <ImageView
@@ -16,7 +16,7 @@
             android:layout_height="71dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/logo" />
 
         <ImageView
@@ -41,6 +41,7 @@
             android:id="@+id/tableLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_below="@+id/imageView2"
             android:layout_centerHorizontal="true" >
 

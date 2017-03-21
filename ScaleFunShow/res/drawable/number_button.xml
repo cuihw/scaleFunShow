@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/button_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/button"          android:state_pressed="false"/>
+    <item android:drawable="@drawable/button_pressed"/>
+    <!--
+    <item android:drawable="@drawable/button_2" android:state_pressed="false"/>
+    <item android:drawable="@drawable/button_1" android:state_pressed="true"/>-->
 
-    <!-- 默认时的背景图片 -->
-    <item android:drawable="@drawable/button"/>
-    <!-- 非触摸模式下获得焦点并单击时的背景图片 -->
-<!-- 这个是按下时的效果 -->
-
-    <item android:state_enabled="true" android:state_pressed="true"
-
-        android:drawable="@drawable/button_pressed"/>
-
-    <!-- 以下为正常状态的效果 -->
-
-    <item android:state_enabled="true"  android:drawable="@drawable/button"></item>
 </selector>

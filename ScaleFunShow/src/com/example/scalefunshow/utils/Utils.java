@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.InputType;
@@ -16,10 +15,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.example.scalefunshow.R;
+
 import java.io.IOException;
 import java.security.MessageDigest;
-
-import com.example.scalefunshow.R;
 
 
 public class Utils {
@@ -98,5 +97,40 @@ public class Utils {
 		}
 		return hexValue.toString();
 	}
- 
+
+	private static void playBeep(Context context, MediaPlayer.OnCompletionListener listener) {
+
+		((Activity)context).setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		MediaPlayer mediaPlayer = new MediaPlayer();
+		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		mediaPlayer.setOnCompletionListener(listener);
+
+		AssetFileDescriptor file = context.getResources().openRawResourceFd(
+			R.raw.beep);
+
+		float BEEP_VOLUME = 0.10f;
+		try {
+			mediaPlayer.setDataSource(file.getFileDescriptor(),
+				file.getStartOffset(), file.getLength());
+			file.close();
+			mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
+			mediaPlayer.prepare();
+			mediaPlayer.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+ 	}
+
+	public static void playFinish(Context contex) {
+		MediaPlayer mp1 = MediaPlayer.create(contex, R.raw.finished);
+		mp1.start();
+
+		mp1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				mp.stop();
+				mp.release();
+			}
+		});
+	}
 }

@@ -97,7 +97,7 @@ public class Login extends Activity {
         });
         
         Log.i(TAG, "onCreate...");
-        playFinish(this);
+        //playFinish(this);
 
         person_id.setOnFocusChangeListener(listener);
         password.setOnFocusChangeListener(listener);
@@ -118,18 +118,6 @@ public class Login extends Activity {
         }
     };
 
-    public static void playFinish(Context contex) {
-        MediaPlayer mp1 = MediaPlayer.create(contex, R.raw.finished);
-        mp1.start();
-
-        mp1.setOnCompletionListener(new OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.stop();
-                mp.release();
-            }
-        });
-    }
 
     @Override
     protected void onResume() {
