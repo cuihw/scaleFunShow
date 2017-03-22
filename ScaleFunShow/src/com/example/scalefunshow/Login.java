@@ -95,7 +95,6 @@ public class Login extends Activity {
                 }
             }
         });
-        
         Log.i(TAG, "onCreate...");
         //playFinish(this);
 

@@ -92,16 +92,19 @@
 
     </RelativeLayout>
 
-    <TableLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/login_layout"
+        android:layout_marginLeft="5dp"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="5dp">
+        android:layout_toRightOf="@+id/login_layout"
+        >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <Button
                 android:text="1"
@@ -132,11 +135,12 @@
                 android:textSize="50sp"
                 android:onClick="onClickNumber"
                 android:id="@+id/button3"/>
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <Button
                 android:text="4"
@@ -167,11 +171,11 @@
                 android:textSize="50sp"
                 android:onClick="onClickNumber"
                 android:id="@+id/button6"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <Button
                 android:text="7"
@@ -202,11 +206,11 @@
                 android:textSize="50sp"
                 android:onClick="onClickNumber"
                 android:id="@+id/button9"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <Button
                 android:text="删除"
@@ -236,8 +240,6 @@
                 android:textSize="30sp"
                 android:onClick="onClickNumber"
                 android:id="@+id/button_ok"/>
-        </TableRow>
-    </TableLayout>
-
-
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>
