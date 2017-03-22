@@ -10,8 +10,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +32,12 @@ public class AdjustActivity extends Activity {
     Button confirm;
 
     Button currentButton;
+    Button button1;
 
     private boolean setOk;
     TextView textview_weight;
     TextView hint;
+    TextView textView2;
 
     static float zeroAdjustWeight = 0;
 
@@ -47,6 +51,8 @@ public class AdjustActivity extends Activity {
 
     private static boolean IS_ALREADY_ADJUST = false;
     private static final String TAG = "AdjustActivity";
+    
+    LinearLayout hint_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +62,14 @@ public class AdjustActivity extends Activity {
         Utils.hideNavigationBar(this);
         setContentView(R.layout.activity_adjust);
         confirm = (Button) findViewById(R.id.confirm);
+        button1 = (Button) findViewById(R.id.button1);
         adjust_imageview  = (ImageView) findViewById(R.id.adjust_imageview);
 
         textview_weight = (TextView) findViewById(R.id.textview_weight);
+        textView2 = (TextView) findViewById(R.id.textView2);
         hint = (TextView) findViewById(R.id.hint);
+        hint_layout = (LinearLayout) findViewById(R.id.hint_layout);
+        hint_layout.setVisibility(View.GONE);
 
         if (IS_ALREADY_ADJUST) {
             // goto the task activity.
@@ -78,8 +88,6 @@ public class AdjustActivity extends Activity {
             });
 
         }
-
-
     }
 
     private void beginAdjust() {
@@ -88,18 +96,19 @@ public class AdjustActivity extends Activity {
     }
 
     private void showHintDialog(final int point) {
-        // 
-        new AlertDialog.Builder(this)
-            .setTitle("开始校验")
-            .setMessage("请把砝码放在位置" + point + " 开始校验" + point + "号位置。")
-            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    startAdjustPoint(point);
-                }
-            }).show();
+        //
+        hint_layout.setVisibility(View.VISIBLE);
+        textView2.setText("请把砝码放在位置" + point + " 开始校验" + point + "号位置。");
+        button1.setOnClickListener(new OnClickListener(){
+             @Override
+            public void onClick(View arg0) {
+                hint_layout.setVisibility(View.GONE);
+                startAdjustPoint(point);
+            }
+         });
     }
 
+    
     private void startAdjustPoint(int point) {
         adjustPoint = point;
         hint.setText("目前正在校验的点位是：" + point + "号位");
