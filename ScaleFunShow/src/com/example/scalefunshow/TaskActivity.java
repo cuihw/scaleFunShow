@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -110,6 +111,54 @@ public class TaskActivity extends Activity {
 
         initListView();
     }
+
+
+    public void onClickNumber(View view) {
+        //http://blog.csdn.net/zhuyb829/article/details/49178563
+        Editable editable = countEdit.getText();
+        int start = countEdit.getSelectionStart();
+        if (start < 0) start = 0;
+
+        switch (view.getId()) {
+            case R.id.button0:
+                editable.insert(start, "0");
+                break;
+            case R.id.button1:
+                editable.insert(start, "1");
+                break;
+            case R.id.button2:
+                editable.insert(start, "2");
+                break;
+            case R.id.button3:
+                editable.insert(start, "3");
+                break;
+            case R.id.button4:
+                editable.insert(start, "4");
+                break;
+            case R.id.button5:
+                editable.insert(start, "5");
+                break;
+            case R.id.button6:
+                editable.insert(start, "6");
+                break;
+            case R.id.button7:
+                editable.insert(start, "7");
+                break;
+            case R.id.button8:
+                editable.insert(start, "8");
+                break;
+            case R.id.button9:
+                editable.insert(start, "9");
+                break;
+            case R.id.button_ok:
+                // hide keybroad.
+                break;
+            case R.id.button_delete:
+                if (start > 0) editable.delete(start - 1, start);
+                break;
+        }
+    }
+
 
     private void initListView() {
         // get task
