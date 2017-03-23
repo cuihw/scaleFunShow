@@ -2,19 +2,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#113355"
+    android:background="@drawable/background"
     tools:context="com.example.scalefunshow.TaskChooseActivity" >
 
-    <TextView
-        android:id="@+id/task_choose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:textColor="@color/white"
-        android:text="任务选择"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title_bar" />
 
     <GridView
         android:id="@+id/task_grid"
@@ -22,7 +15,7 @@
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/task_choose"
+        android:layout_below="@id/title_bar"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:numColumns="4"

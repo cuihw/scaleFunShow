@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@drawable/back_ground_normal"
+        android:background="@color/orange_back"
         android:orientation="vertical" >
 
         <TextView
@@ -105,6 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="10dp"
+
+            android:background="@drawable/button_red"
             android:layout_gravity="center_horizontal"
             android:textSize="30sp"
             android:text="确定" />

@@ -28,12 +28,13 @@
             android:src="@drawable/slogon" />
         <Button
             android:id="@+id/login"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tableLayout1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:onClick="onClick"
+            android:background="@drawable/button_red"
             android:text="登录" >
             <requestFocus/>
         </Button>
@@ -93,6 +94,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/number_keybroad_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -200,7 +202,7 @@
             <Button
                 android:text="9"
                 android:layout_width="105dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:background="@drawable/number_button"
                 android:textColor="@color/white"
                 android:textSize="50sp"
@@ -215,7 +217,7 @@
             <Button
                 android:text="删除"
                 android:layout_width="110dp"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:background="@drawable/number_button"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -225,16 +227,16 @@
             <Button
                 android:text="0"
                 android:layout_width="105dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:background="@drawable/number_button"
                 android:textColor="@color/white"
-                android:textSize="50sp"
+                android:textSize="30sp"
                 android:onClick="onClickNumber"
                 android:id="@+id/button0"/>
             <Button
                 android:text="确定"
                 android:layout_width="105dp"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:background="@drawable/number_button"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -242,4 +244,5 @@
                 android:id="@+id/button_ok"/>
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

@@ -143,6 +143,7 @@ public class Login extends Activity {
             bean.setDeviceid(Utils.getDeviceId(Login.this));
             login(bean);
         }
+        finish();
     }
 
     public void onClickNumber(View view) {

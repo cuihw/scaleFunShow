@@ -38,13 +38,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Gross" />
+
                     <CheckBox
                         android:layout_weight="1"
                         android:id="@+id/cb_zero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="zero" />
-                    
+
                    <CheckBox
                        	android:layout_weight="1"
                         android:id="@+id/cb_stab"
@@ -166,7 +167,6 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
 
-                    
                     <LinearLayout
                         android:padding="5dp"                      
                         android:layout_width="0dp"

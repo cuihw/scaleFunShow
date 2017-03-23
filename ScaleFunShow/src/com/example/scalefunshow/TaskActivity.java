@@ -14,13 +14,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
@@ -35,29 +31,17 @@ public class TaskActivity extends Activity {
     List<TaskBean> taskList = new ArrayList<TaskBean>();
 
     TaskBean currentTask;
-
     String[] peifangnames;
-
     String[] jiaobanjihao;
-
     String[] peiLiaoFangShi;
-
     Spinner peiliaoSpinner;
-
     Spinner peifangSpinner;
-
     Spinner jiaobanjiSpinner;
-
     Button ok_button;
-
     Button back;
-
     Button countius;
-
     EditText countEdit;
-
     ListView listView1;
-
     TaskAdapter adpter;
 
     @Override
@@ -68,16 +52,14 @@ public class TaskActivity extends Activity {
 
         ok_button = (Button) findViewById(R.id.ok_button);
         back = (Button) findViewById(R.id.back);
-        countius = (Button) findViewById(R.id.countius);
+        countius = (Button) findViewById(R.id.add_task);
         countEdit = (EditText) findViewById(R.id.count);
-        //Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
+        Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
 
         peifangnames = getResources().getStringArray(R.array.peifang);
         jiaobanjihao = getResources().getStringArray(R.array.jiaobanjihao);
         peiLiaoFangShi = getResources().getStringArray(R.array.peiliaofangshi);
-
         currentTask = new TaskBean();
-
         peifangSpinner = (Spinner) findViewById(R.id.spinner1);
         peifangSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 

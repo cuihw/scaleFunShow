@@ -1,39 +1,32 @@
-<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#113355"
-    tools:context="com.example.scalefunshow.TaskActivity" >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="任务添加"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background"
+                style="@style/AppTheme"
+                tools:context="com.example.scalefunshow.TaskActivity">
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title_bar" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="500dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1" >
+        android:layout_below="@+id/title_bar">
 
         <TableLayout
             android:id="@+id/tableLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp" >
+            android:layout_marginTop="45dp">
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -41,19 +34,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="配方名称： "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/peifang" />
+                    android:entries="@array/peifang"/>
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textView15"
@@ -61,21 +54,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="份数： "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <EditText
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:ems="10"
-                    android:imeOptions="actionDone|flagNoExtractUi"
-                    android:inputType="number" />
+                    android:inputType="number"/>
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textView4"
@@ -83,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="配料方式： "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <Spinner
                     android:id="@+id/spinner2"
@@ -95,7 +87,7 @@
             <TableRow
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -103,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="搅拌机号： "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <Spinner
                     android:id="@+id/spinner3"
@@ -114,39 +106,45 @@
         </TableLayout>
 
         <Button
-            android:id="@+id/countius"
+            android:id="@+id/add_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="60dp"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"
             android:onClick="onClick"
-            android:text="   继续添加    "
-            android:textSize="20sp" />
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/button_red"
+            android:text="确  定"
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/countius"
-            android:layout_alignBottom="@+id/countius"
+            android:layout_alignBaseline="@+id/add_task"
+            android:layout_alignBottom="@+id/add_task"
             android:layout_marginRight="60dp"
-            android:layout_toLeftOf="@+id/countius"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"
-            android:text="   返回    "
-            android:textSize="20sp" />
+            android:layout_toLeftOf="@+id/add_task"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/button_red"
+            android:text="返  回"
+            android:textSize="20sp"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/relativeLayout1" >
+        android:layout_below="@+id/title_bar"
+        android:layout_toRightOf="@+id/relativeLayout1">
 
         <TextView
             android:id="@+id/textView6"
@@ -154,30 +152,186 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="已添加任务:"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <Button
-	        android:id="@+id/ok_button"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentBottom="true"
-	        android:layout_centerHorizontal="true"
-	        android:padding="15dp"
-	        android:textSize="20sp"
-	        android:layout_margin="15dp"
+            android:id="@+id/ok_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="15dp"
             android:onClick="onClick"
-	        android:text="确定" />
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:background="@drawable/button_red"
+            android:text="确定"
+            android:textSize="20sp"/>
+
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/ok_button"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textView6"
-            android:layout_above="@+id/ok_button"
             android:layout_margin="0dp"
-            android:layout_marginTop="20dp" >
+            android:layout_marginTop="20dp">
         </ListView>
+
+        <LinearLayout
+            android:id="@+id/number_keybroad_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/login_layout"
+            >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:text="1"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button1"/>
+
+                <Button
+                    android:text="2"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button2"/>
+
+                <Button
+                    android:text="3"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:text="4"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button4"/>
+
+                <Button
+                    android:text="5"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button5"/>
+
+                <Button
+                    android:text="6"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button6"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:text="7"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button7"/>
+
+                <Button
+                    android:text="8"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button8"/>
+
+                <Button
+                    android:text="9"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button9"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:text="删除"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button_delete"/>
+
+                <Button
+                    android:text="0"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button0"/>
+                <Button
+                    android:text="确定"
+                    android:layout_width="105dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/number_button"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:onClick="onClickNumber"
+                    android:id="@+id/button_ok"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
     </RelativeLayout>
-
-
 </RelativeLayout>
