@@ -56,6 +56,14 @@ public class TaskActivity extends Activity {
         countius = (Button) findViewById(R.id.add_task);
         countEdit = (EditText) findViewById(R.id.count);
         Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
+        countEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (countEdit == v && hasFocus) {
+
+                }
+            }
+        });
 
         peifangnames = getResources().getStringArray(R.array.peifang);
         jiaobanjihao = getResources().getStringArray(R.array.jiaobanjihao);
