@@ -7,21 +7,18 @@
 
     <TextView
         android:text="序号"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_index"
-        android:layout_weight="1"/>
+        android:id="@+id/tv_index"/>
     <View
         android:layout_width="1px"
         android:layout_height="match_parent"
         android:background="@color/line" />
     <TextView
         android:text="操作人"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_operator"
-        android:layout_weight="1"/>
-
+        android:id="@+id/tv_operator"/>
     <View
         android:layout_width="1px"
         android:layout_height="match_parent"
