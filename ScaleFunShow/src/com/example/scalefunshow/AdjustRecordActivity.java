@@ -34,12 +34,15 @@ public class AdjustRecordActivity extends Activity {
         setContentView(R.layout.activity_adjust_record);
 		listView = (ListView)findViewById(R.id.listview_record);
 		Log.i(TAG, "listView = " + listView);
-		//initListview();
+
+		initListview();
 	}
+
 	
 	private void initListview() {
 		Log.i(TAG, "initListview .....");
 		listView = (ListView)findViewById(R.id.listview_record);
+		Log.i(TAG, "listView = " + listView);
 		getAdjustRecord();
 	}
 
@@ -52,8 +55,8 @@ public class AdjustRecordActivity extends Activity {
 					adjustList = new ArrayList<AdjustBean>();
 					for (int i = 0; i < 18; i ++) {
 						AdjustBean bean = new AdjustBean();
-						bean.setIsRight("是");
 						bean.setId(i);
+						bean.setIsRight("是");
 						bean.setOperator("测试员" + i);
 						bean.setWeight("300克");
 						bean.setFamaWeight("300克");
@@ -132,7 +135,7 @@ public class AdjustRecordActivity extends Activity {
 				viewHolder = (ViewHolder) convertView.getTag();
 			}
 			AdjustBean bean = list.get(position);
-			viewHolder.tv_index.setText(bean.getId());
+			viewHolder.tv_index.setText("" + bean.getId());
 			viewHolder.tv_operator.setText(bean.getOperator());
 			viewHolder.tv_time.setText(bean.getTime());
 			viewHolder.tv_fama_weight.setText(bean.getFamaWeight());

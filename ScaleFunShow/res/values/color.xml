@@ -6,6 +6,7 @@
     <color name="operBarBackgroud">#80000000</color>
     <color name="operBarBackgroud1">#20000000</color>
     <color name="bgcolor">#E8EbEd</color>
+    <color name="line">#cccccc</color>
     <color name="white">#ffffff</color>
     <color name="button_pressed">#cccccc</color>
     <color name="text_color">#999999</color>
