@@ -126,23 +126,29 @@ public class Login extends Activity {
 
     public void onClick(View view) {
         if (view == login) {
-            String id = person_id.getText().toString();
-            String pwd = password.getText().toString();
-            if ("999999".equals(id) && "123456".equals(pwd)) {
-                Intent intent = new Intent();
-                intent.setClass(this, TaskActivity.class);
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent();
-                intent.setClass(this, AdjustActivity.class);
-                startActivity(intent);
-            }
-            LoginBean bean = new LoginBean();
-            bean.setUserid(id);
-            bean.setPassword(Utils.string2MD5(pwd));
-            bean.setDeviceid(Utils.getDeviceId(Login.this));
-            login(bean);
+            login();
         }
+
+    }
+
+    private void login() {
+        String id = person_id.getText().toString();
+        String pwd = password.getText().toString();
+        if ("999999".equals(id) && "123456".equals(pwd)) {
+            Intent intent = new Intent();
+            intent.setClass(this, TaskActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent();
+            intent.setClass(this, AdjustActivity.class);
+            startActivity(intent);
+        }
+        LoginBean bean = new LoginBean();
+        bean.setUserid(id);
+        bean.setPassword(Utils.string2MD5(pwd));
+        bean.setDeviceid(Utils.getDeviceId(Login.this));
+        login(bean);
+
         finish();
     }
 
@@ -189,10 +195,16 @@ public class Login extends Activity {
                 if (currentEdit == person_id) {
                     password.requestFocus();
                 }
+                if (currentEdit == password) {
+                    login();
+                }
                 break;
             case R.id.button_delete:
                 if (start > 0) editable.delete(start - 1, start);
                 break;
+        }
+        if (currentEdit == password) {
+
         }
     }
 

@@ -331,7 +331,5 @@
                     android:id="@+id/button_ok"/>
             </LinearLayout>
         </LinearLayout>
-
-
     </RelativeLayout>
 </RelativeLayout>
