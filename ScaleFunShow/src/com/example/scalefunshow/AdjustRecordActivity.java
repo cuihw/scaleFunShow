@@ -30,7 +30,6 @@ public class AdjustRecordActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
 		Utils.hideNavigationBar(this);
         setContentView(R.layout.activity_adjust_record);
@@ -77,11 +76,9 @@ public class AdjustRecordActivity extends Activity {
 	private void showList() {
 		Log.i(TAG, "showList .....");
 		AdjustRecordAdapter adapter = new AdjustRecordAdapter(adjustList);
-		if (listView != null)
 		listView.setAdapter(adapter);
 	}
 
-	
 	public class AdjustRecordAdapter extends BaseAdapter {
 		List<AdjustBean> list;
 		public AdjustRecordAdapter(List<AdjustBean> list){
