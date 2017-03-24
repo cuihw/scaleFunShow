@@ -57,12 +57,13 @@ public class AdjustRecordActivity extends Activity {
 						AdjustBean bean = new AdjustBean();
 						bean.setId(i);
 						bean.setIsRight("是");
-						bean.setOperator("测试员" + i);
+						bean.setOperator("员工" + i);
 						bean.setWeight("300克");
 						bean.setFamaWeight("300克");
 						bean.setPoint( "" + (i%5 + 1));
 						bean.setTime("15:30");
 						adjustList.add(bean);
+						dbHelper.addAdjust(bean);
 					}
 				}
 				Log.i(TAG, "get list.....");

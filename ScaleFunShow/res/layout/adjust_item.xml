@@ -25,7 +25,7 @@
         android:background="@color/line" />
     <TextView
         android:text="时间"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/tv_time"
         android:layout_weight="1"/>
@@ -36,7 +36,7 @@
         android:background="@color/line" />
     <TextView
         android:text="砝码"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/tv_fama_weight"
         android:layout_weight="1"/>
@@ -46,8 +46,8 @@
         android:layout_height="match_parent"
         android:background="@color/line" />
     <TextView
-        android:text="称量重量"
-        android:layout_width="wrap_content"
+        android:text="重量"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/tv_weight"
         android:layout_weight="1"/>
@@ -57,8 +57,8 @@
         android:layout_height="match_parent"
         android:background="@color/line" />
     <TextView
-        android:text="校准点位"
-        android:layout_width="wrap_content"
+        android:text="点位"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:id="@+id/tv_point"
         android:layout_weight="1"/>
@@ -67,15 +67,12 @@
         android:layout_width="1px"
         android:layout_height="match_parent"
         android:background="@color/line" />
+
     <TextView
         android:text="通过"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:id="@+id/tv_pass"
         android:layout_weight="1"/>
 
-    <View
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="@color/line" />
 </LinearLayout>
