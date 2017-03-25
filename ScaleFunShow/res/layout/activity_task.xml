@@ -39,7 +39,9 @@
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/select_drop"
+                    android:padding="5dp"
                     android:entries="@array/peifang"/>
             </TableRow>
 
@@ -61,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:ems="10"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="number"/>
             </TableRow>
 
@@ -80,7 +83,9 @@
                 <Spinner
                     android:id="@+id/spinner2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:padding="5dp"
+                    android:background="@drawable/select_drop"
                     android:entries="@array/peiliaofangshi"/>
             </TableRow>
 
@@ -100,7 +105,9 @@
                 <Spinner
                     android:id="@+id/spinner3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:padding="5dp"
+                    android:background="@drawable/select_drop"
                     android:entries="@array/jiaobanjihao"/>
             </TableRow>
         </TableLayout>
@@ -134,6 +141,7 @@
             android:paddingTop="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:onClick="onClick"
             android:background="@drawable/button_red"
             android:text="返  回"
             android:textSize="20sp"/>

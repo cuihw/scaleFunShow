@@ -108,7 +108,6 @@ public class AdjustActivity extends Activity {
          });
     }
 
-    
     private void startAdjustPoint(int point) {
         adjustPoint = point;
         hint.setText("目前正在校验的点位是：" + point + "号位");

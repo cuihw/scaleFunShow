@@ -10,7 +10,7 @@
     <color name="button_pressed">#cccccc</color>
     <color name="text_color">#999999</color>
     <color name="black">#111111</color>
-    <color name="orange_back">#b9ff6f00</color>
+    <color name="orange_back">#ff6f00</color>
     <color name="orange_normal">#FFFF7F00</color>
     <color name="orange_yellow">#FF6347</color>
     <color name="red">#E70012</color>

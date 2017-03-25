@@ -50,7 +50,6 @@ public class TaskChooseActivity extends Activity {
 	            taskList = retList;
 	        }
 		}
-
 		initGrid();
 	}
 

@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TaskActivity extends Activity {
@@ -44,6 +46,8 @@ public class TaskActivity extends Activity {
     EditText countEdit;
     ListView listView1;
     TaskAdapter adpter;
+    
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +59,16 @@ public class TaskActivity extends Activity {
         back = (Button) findViewById(R.id.back);
         countius = (Button) findViewById(R.id.add_task);
         countEdit = (EditText) findViewById(R.id.count);
-        Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
-        countEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (countEdit == v && hasFocus) {
-
-                }
-            }
-        });
+//        Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
+//        countEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (countEdit == v && hasFocus) {
+//
+//                }
+//            }
+//        });
+        initTitle();
 
         peifangnames = getResources().getStringArray(R.array.peifang);
         jiaobanjihao = getResources().getStringArray(R.array.jiaobanjihao);
@@ -120,53 +125,9 @@ public class TaskActivity extends Activity {
         initListView();
     }
 
-
-    public void onClickNumber(View view) {
-        //http://blog.csdn.net/zhuyb829/article/details/49178563
-        Editable editable = countEdit.getText();
-        int start = countEdit.getSelectionStart();
-        if (start < 0) start = 0;
-
-        switch (view.getId()) {
-            case R.id.button0:
-                editable.insert(start, "0");
-                break;
-            case R.id.button1:
-                editable.insert(start, "1");
-                break;
-            case R.id.button2:
-                editable.insert(start, "2");
-                break;
-            case R.id.button3:
-                editable.insert(start, "3");
-                break;
-            case R.id.button4:
-                editable.insert(start, "4");
-                break;
-            case R.id.button5:
-                editable.insert(start, "5");
-                break;
-            case R.id.button6:
-                editable.insert(start, "6");
-                break;
-            case R.id.button7:
-                editable.insert(start, "7");
-                break;
-            case R.id.button8:
-                editable.insert(start, "8");
-                break;
-            case R.id.button9:
-                editable.insert(start, "9");
-                break;
-            case R.id.button_ok:
-                // hide keybroad.
-                break;
-            case R.id.button_delete:
-                if (start > 0) editable.delete(start - 1, start);
-                break;
-        }
+    private void initTitle() {
+         
     }
-
 
     private void initListView() {
         // get task
@@ -193,6 +154,11 @@ public class TaskActivity extends Activity {
             saveTask();
         } else if (back == view) {
             clearCurrentTask();
+
+            Intent intent = new Intent();
+            intent.setClass(this, Login.class);
+            startActivity(intent);
+            finish();
         } else if (countius == view) {
             addTask2List();
             clearCurrentTask();
@@ -241,6 +207,7 @@ public class TaskActivity extends Activity {
         }
         taskList.add(currentTask);
         adpter.notifyDataSetChanged();
+        saveTask();
     }
 
     private void clearCurrentTask() {
