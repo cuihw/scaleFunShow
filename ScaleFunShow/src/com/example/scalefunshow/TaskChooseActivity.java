@@ -60,7 +60,7 @@ public class TaskChooseActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				ZzLog.i(TAG, "onItemClick = " + position);
 				TaskCache.current = taskList.get(position);
-				Utils.startActivity(TaskChooseActivity.this, WorkingActivity.class);
+				Utils.startActivity(TaskChooseActivity.this, WorkingActivity1.class);
 			}
 		});
 		if (taskList == null || taskList.size() == 0) {

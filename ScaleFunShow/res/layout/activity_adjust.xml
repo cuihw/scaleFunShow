@@ -70,6 +70,7 @@
             android:layout_marginBottom="30dp"
             android:onClick="onClick"
             android:visibility="invisible"
+            android:padding="10dp"
             android:background="@drawable/button_red"
             android:textSize="30sp"
             android:text="全部校准完成" />

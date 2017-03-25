@@ -152,9 +152,7 @@ public class TaskActivity extends Activity {
     public void onClick(View view) {
         if (ok_button == view) {
             saveTask();
-
             Utils.startActivity(this, Login.class);
-            
         } else if (back == view) {
             clearCurrentTask();
 

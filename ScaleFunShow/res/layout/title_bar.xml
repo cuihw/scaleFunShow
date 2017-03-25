@@ -51,7 +51,7 @@
         android:layout_toLeftOf="@+id/tvtitle"
         android:paddingRight="20dp"
         android:textColor="@android:color/white"
-        android:text="总任务数：200"
+        android:text="总任务数：19"
         android:textSize="14sp" />
 
 
