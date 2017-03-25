@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.scalefunshow.adpter.TaskAdapter;
 import com.example.scalefunshow.bean.TaskBean;
@@ -49,6 +50,7 @@ public class TaskChooseActivity extends Activity {
 	        if (retList != null) {
 	            taskList = retList;
 	        }
+	        TaskCache.setTaskList(taskList);
 		}
 		initGrid();
 	}
@@ -60,7 +62,11 @@ public class TaskChooseActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				ZzLog.i(TAG, "onItemClick = " + position);
 				TaskCache.current = taskList.get(position);
-				Utils.startActivity(TaskChooseActivity.this, WorkingActivity1.class);
+				if (TaskCache.current.isCompleted()) {
+				    Toast.makeText(TaskChooseActivity.this, "已经称量完成", Toast.LENGTH_SHORT).show();
+				} else {
+	                Utils.startActivity(TaskChooseActivity.this, WorkingActivity1.class);
+				}
 			}
 		});
 		if (taskList == null || taskList.size() == 0) {

@@ -49,7 +49,7 @@ public class AdjustActivity extends Activity {
 
     List<Float> adjustPointList = new ArrayList<Float>();
 
-    private static boolean IS_ALREADY_ADJUST = true;
+    private boolean IS_ALREADY_ADJUST = false;
     private static final String TAG = "AdjustActivity";
     
     LinearLayout hint_layout;
@@ -178,7 +178,7 @@ public class AdjustActivity extends Activity {
 
                 ZzLog.i(TAG, "read weight...." + weight);
                 if (!setOk) {
-                    handler.sendEmptyMessageDelayed(GET_WEIGHT, 400);
+                    handler.sendEmptyMessageDelayed(GET_WEIGHT, 200);
                 }
             }
         }

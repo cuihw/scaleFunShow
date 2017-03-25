@@ -38,5 +38,13 @@
         android:textSize="14sp"
         android:id="@+id/jiaobanji_id"/>
 
+    <ImageView
+        android:id="@+id/finished"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:src="@drawable/finish" />
 
 </RelativeLayout>

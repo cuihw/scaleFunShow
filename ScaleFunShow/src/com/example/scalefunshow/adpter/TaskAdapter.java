@@ -65,6 +65,7 @@ public class TaskAdapter  extends BaseAdapter{
             convertView.setTag(viewHolder);
             if (resourceid != 0) {
                 viewHolder.imageview = (ImageView) convertView.findViewById(R.id.imageView_food);
+                viewHolder.finished = (ImageView) convertView.findViewById(R.id.finished);
             }
             viewHolder.tvPeifang = (TextView) convertView.findViewById(R.id.name);
             viewHolder.tvcount = (TextView) convertView.findViewById(R.id.count);
@@ -93,6 +94,12 @@ public class TaskAdapter  extends BaseAdapter{
             if ("小麻团".equals(name)){
                 viewHolder.imageview.setImageResource(R.drawable.xiaomatuan);
             }
+            if (taskBean.isCompleted()) {
+                viewHolder.finished.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.finished.setVisibility(View.GONE);
+                
+            }
         }
         if (name.length()> 5) {
             name = name.substring(0,5);
@@ -108,5 +115,6 @@ public class TaskAdapter  extends BaseAdapter{
         public TextView tvPeifang;
         public TextView tvcount;
         public TextView tvjiaobanji;
+        public ImageView finished;
     }
 }

@@ -17,19 +17,19 @@
         android:layout_below="@+id/title_bar"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:text="当前物料需要称重：600G" />
+        android:text="当前物料需要称重：600G"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/current_weight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/current_total"
         android:layout_below="@+id/current_total"
         android:layout_marginTop="5dp"
-        android:textSize="50sp"
+        android:text="当前称重重量 : 286G"
         android:textColor="@color/black"
-        android:text="当前称重重量 : 286G" />
+        android:textSize="50sp" />
 
     <TextView
         android:id="@+id/skin_weight"
@@ -48,44 +48,46 @@
         android:layout_alignLeft="@+id/skin_weight"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/skin_weight"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
         android:background="@color/red"
-        android:layout_marginRight="20dp"
-        android:progress="38"
-        android:labelFor="20" />
+        android:labelFor="20"
+        android:progress="38" />
 
     <TextView
-         android:layout_width="30dp"
+        android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignBottom="@+id/progressBar1"
         android:layout_alignRight="@+id/progressBar1"
         android:layout_marginRight="60dp"
-        android:background="@drawable/triangle"  />
+        android:background="@drawable/triangle" />
+
     <TextView
-         android:layout_width="30dp"
+        android:id="@+id/textView3"
+        android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignBottom="@+id/progressBar1"
         android:layout_alignRight="@+id/progressBar1"
         android:layout_marginRight="0dp"
-        android:background="@drawable/triangle_red"  />
+        android:background="@drawable/triangle_red" />
+
     <TextView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignBottom="@+id/progressBar1"
         android:layout_alignRight="@+id/progressBar1"
         android:layout_marginRight="120dp"
-        android:background="@drawable/triangle_red"  />
+        android:background="@drawable/triangle_red" />
 
-    <LinearLayout 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/progressBar1"
-        > 
+        android:layout_below="@+id/progressBar1" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
 
             <TextView
                 android:id="@+id/current_xiaoliao"
@@ -95,148 +97,151 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="23dp"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/black"
-                android:text="当前小料名字" />
+                android:text="当前小料名字"
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/xiaoliaoname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/current_xiaoliao"
                 android:layout_below="@+id/current_xiaoliao"
                 android:layout_marginLeft="72dp"
-                android:layout_marginTop="35dp"
-                android:textColor="@color/black"
-                android:text="味精" />
+                android:layout_marginTop="20dp"
+                android:textSize="40sp"
+                android:text="味精"
+                android:textColor="@color/black" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/next_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:padding="20dp"
                 android:background="@drawable/button_red"
-                android:text="下一物料：白糖  200克" />
-            
+                android:padding="20dp"
+                android:text="下一物料：白糖  200克"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="469dp"
-            android:layout_height="match_parent" >
+            android:layout_width="370dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/peifang_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="45dp"
-                android:textColor="@color/black"
-                android:text="配方信息" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="配方信息"
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/chengtai_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/textView1"
-                android:layout_below="@+id/textView1"
+                android:layout_below="@+id/peifang_name"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="18dp"
-                android:textColor="@color/black"
-                android:text="台秤编号" />
+                android:text="台秤编号：208"
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/textView1"
-                android:layout_marginRight="22dp"
-                android:layout_marginTop="11dp"
-                android:textSize="20sp"
-                android:padding="20dp"
+                android:layout_alignParentRight="true" 
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/button_red"
-                android:text="抽检" />
+                android:padding="20dp"
+                android:text="抽检"
+                android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView2"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="65dp"
-                android:textSize="20sp"
-                android:padding="20dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/button_red"
-                android:text="取消" />
+                android:padding="20dp"
+                android:text="取消"
+                android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/ok_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/button3"
-                android:layout_alignRight="@+id/button2"
-                android:layout_marginRight="65dp"
-                android:textSize="20sp"
-                android:padding="20dp"
+                android:layout_alignBottom="@+id/cancel"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/button_red"
-                android:text="确定" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/button2"
-                android:layout_below="@+id/button2"
-                android:layout_marginTop="16dp"
-                android:textSize="20sp"
                 android:padding="20dp"
-                android:background="@drawable/button_red"
-                android:text="领料" />
-            
+                android:text="确定"
+                android:onClick="onClick"
+                android:textSize="20sp" />
         </RelativeLayout>
-        
     </LinearLayout>
-    
-        <LinearLayout
-            android:id="@+id/weight_of_skin_layout"
+
+    <LinearLayout
+        android:id="@+id/weight_of_skin_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@color/orange_back"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:padding="30dp" >
+
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/corners_bg_qupi"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:padding="30dp"
-            android:orientation="vertical"
-            android:visibility="invisible" >
+            android:text="开始去皮操作:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="开始去皮操作:"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/weight_of_skin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="皮重： "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/weight_of_skin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="皮重： "
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+        <Button
+            android:id="@+id/skin_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onClick"
+            android:text="确定"
+            android:textSize="30sp" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/skin_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="20dp"
-                android:onClick="onClick"
-                android:text="确定"
-                android:textSize="25sp" />
-        </LinearLayout>
+    <Button
+        android:id="@+id/lingliao_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/current_weight"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_red"
+        android:layout_marginRight="20dp"
+        android:padding="20dp"
+        android:text="领料"
+        android:textSize="20sp" />
+
 </RelativeLayout>

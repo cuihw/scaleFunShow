@@ -3,11 +3,13 @@ package com.example.scalefunshow.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XiaoYouTiao {
+
+// 小油条配方
+public class XiaoYouTiaopeifang {
     List<Material> list = new ArrayList<Material>();
     
-    public XiaoYouTiao(){
-    	Material m = new Material("面粉", 500);
+    public XiaoYouTiaopeifang(){
+    	Material m = new Material("面粉", 50);
 
     	list.add(m);
     	m =  new Material("糖", 10);

@@ -187,8 +187,8 @@ public class TaskActivity extends Activity {
 
         int count = Integer.parseInt(strCount);
 
-        if (count < 1) {
-            Toast.makeText(this, "输入的“份数”不对，请确认是整数份。", Toast.LENGTH_SHORT).show();
+        if (count < 1 || count > 60) {
+            Toast.makeText(this, "输入的“份数”不对，请确认是整数份。份数在1到60之间", Toast.LENGTH_SHORT).show();
             return;
         }
         currentTask.setCount(count);

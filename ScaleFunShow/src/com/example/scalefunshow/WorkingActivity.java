@@ -10,7 +10,7 @@ import java.util.TimerTask;
 import com.example.scalefunshow.adpter.FoodAdapter;
 import com.example.scalefunshow.bean.Material;
 import com.example.scalefunshow.bean.TaskBean;
-import com.example.scalefunshow.bean.XiaoYouTiao;
+import com.example.scalefunshow.bean.XiaoYouTiaopeifang;
 import com.example.scalefunshow.tscale.TScale;
 import com.example.scalefunshow.utils.TaskCache;
 import com.example.scalefunshow.utils.Utils;
@@ -111,7 +111,6 @@ public class WorkingActivity extends Activity {
 			new int[]{android.R.id.text1});
 	}
 
-
 	private void initMaterialView() {
 
 		Log.i(TAG, "initMaterialView()" );
@@ -121,7 +120,7 @@ public class WorkingActivity extends Activity {
 
 		if (taskBean.getPeifangming().equals("小油条")) {
 			// 小油条配方
-			XiaoYouTiao xiaoyoutiao = new XiaoYouTiao();
+			XiaoYouTiaopeifang xiaoyoutiao = new XiaoYouTiaopeifang();
 			List list = xiaoyoutiao.getList();
 		} else if (taskBean.getPeifangming().equals("元宵")) {
 			
@@ -131,7 +130,7 @@ public class WorkingActivity extends Activity {
 
 		}
 
-		XiaoYouTiao xiaoyoutiao = new XiaoYouTiao();
+		XiaoYouTiaopeifang xiaoyoutiao = new XiaoYouTiaopeifang();
 		listMaterial = xiaoyoutiao.getList();
 		initChengliang(listMaterial);
         

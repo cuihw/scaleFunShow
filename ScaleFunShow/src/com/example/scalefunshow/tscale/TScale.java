@@ -52,12 +52,12 @@ public class TScale {
 		mHandler.post(new Runnable() {
 			@Override
 			public void run(){
-				weight = getWeight();
+				weight = getWeight() - adjustZeroWeight;
 				view.setText(preText + weight + suffix);
 				if (isStop) {
 					mHandler = null;
 				} else {
-					mHandler.postDelayed(this, 1000);
+					mHandler.postDelayed(this, 500);
 				}
 			}
 		});
@@ -71,7 +71,7 @@ public class TScale {
 	public static void reset(){
 		mScale = JNIScale.getScale();
 	}
-	
+	// 得到毛重
 	public float getWeight() {
 		TScale.getInstence();
 		String temp = null;
@@ -82,7 +82,8 @@ public class TScale {
 			return 0;
 		}
 		try {
-			weight = Float.parseFloat(temp);
+		    weight = Float.parseFloat(temp);
+			weight =  (float)((int)(weight*100))/100;
  		} catch (Exception e) {
 			Log.i(TAG, "weight = " + temp);
 		}
