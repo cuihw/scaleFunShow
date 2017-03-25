@@ -81,10 +81,8 @@ public class FoodAdapter extends BaseAdapter {
 		}
 
 		Material m = list.get(position);
-
 		viewHolder.tvPeifang.setText("" + m.getName());
-		viewHolder.tvcount.setText("" + (m.getCount() * totalCount) + "KG");
-
+		viewHolder.tvcount.setText("" + (m.getCount() * totalCount) + "G");
 		if (selection == position) {
 			convertView.setBackgroundResource(R.drawable.corners_bg_pressed);
 		} else {

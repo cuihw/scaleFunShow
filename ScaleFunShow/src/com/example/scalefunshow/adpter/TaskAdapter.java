@@ -15,7 +15,7 @@ import android.widget.TextView;
 /**
  * Created by cuihuawei on 2/22/2017.
  */
-
+/*用于显示已经添加的任务列表*/
 public class TaskAdapter  extends BaseAdapter{
 
     List<TaskBean> list;
@@ -69,18 +69,15 @@ public class TaskAdapter  extends BaseAdapter{
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
         TaskBean taskBean = list.get(position);
 
-        viewHolder.tvPeifang.setText("配方名称：" + taskBean.getPeifangming());
+        viewHolder.tvPeifang.setText(taskBean.getPeifangming());
         viewHolder.tvcount.setText("份数：" + taskBean.getCount());
         viewHolder.tvjiaobanji.setText("搅拌机号：" + taskBean.getJiaobanjiID());
-
         return convertView;
     }
 
     static class ViewHolder {
-
         public TextView tvPeifang;
         public TextView tvcount;
         public TextView tvjiaobanji;

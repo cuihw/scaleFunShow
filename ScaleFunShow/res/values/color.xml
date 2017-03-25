@@ -6,6 +6,7 @@
     <color name="operBarBackgroud">#80000000</color>
     <color name="operBarBackgroud1">#20000000</color>
     <color name="bgcolor">#E8EbEd</color>
+    <color name="line">#cccccc</color>
     <color name="white">#ffffff</color>
     <color name="button_pressed">#cccccc</color>
     <color name="text_color">#999999</color>
@@ -13,8 +14,7 @@
     <color name="orange_back">#ff6f00</color>
     <color name="orange_normal">#FFFF7F00</color>
     <color name="orange_yellow">#FF6347</color>
+    <color name="orange_yellow_gary">#88FF6347</color>
     <color name="red">#E70012</color>
     <color name="orange_transparency">#20FF7F00</color>
-
-
 </resources>

@@ -27,19 +27,15 @@ public class TaskBean {
 	public void setPeiliaofangshi(String peiliaofangshi) {
 		this.peiliaofangshi = peiliaofangshi;
 	}
-
 	public String getJiaobanjiID() {
 		return jiaobanjiID;
 	}
-
 	public void setJiaobanjiID(String jiaobanjiID) {
 		this.jiaobanjiID = jiaobanjiID;
 	}
-
 	public boolean isCompleted() {
 		return isCompleted;
 	}
-
 	public void setCompleted(boolean completed) {
 		isCompleted = completed;
 	}
