@@ -152,6 +152,9 @@ public class TaskActivity extends Activity {
     public void onClick(View view) {
         if (ok_button == view) {
             saveTask();
+
+            Utils.startActivity(this, Login.class);
+            
         } else if (back == view) {
             clearCurrentTask();
 
@@ -175,7 +178,6 @@ public class TaskActivity extends Activity {
         SharedPrefUtils.SetString(this, "task", task);
 
         TaskCache.setTaskList(taskList);
-        Utils.startActivity(this, Login.class);
     }
 
     private void addTask2List() {

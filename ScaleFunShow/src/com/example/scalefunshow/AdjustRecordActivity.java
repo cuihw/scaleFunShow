@@ -34,11 +34,9 @@ public class AdjustRecordActivity extends Activity {
         setContentView(R.layout.activity_adjust_record);
 		listView = (ListView)findViewById(R.id.listview_record);
 		Log.i(TAG, "listView = " + listView);
-
 		initListview();
 	}
 
-	
 	private void initListview() {
 		Log.i(TAG, "initListview .....");
 		listView = (ListView)findViewById(R.id.listview_record);

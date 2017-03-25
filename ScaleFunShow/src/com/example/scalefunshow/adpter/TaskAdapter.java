@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -20,7 +21,7 @@ public class TaskAdapter  extends BaseAdapter{
 
     List<TaskBean> list;
     Context context;
-    private int resourceid;
+    private int resourceid = 0;
 
     public TaskAdapter(Context context, List<TaskBean> list) {
         this.list = list;
@@ -62,6 +63,9 @@ public class TaskAdapter  extends BaseAdapter{
                 convertView = LayoutInflater.from(context).inflate(R.layout.task_item, null);
             }
             convertView.setTag(viewHolder);
+            if (resourceid != 0) {
+                viewHolder.imageview = (ImageView) convertView.findViewById(R.id.imageView_food);
+            }
             viewHolder.tvPeifang = (TextView) convertView.findViewById(R.id.name);
             viewHolder.tvcount = (TextView) convertView.findViewById(R.id.count);
             viewHolder.tvjiaobanji = (TextView) convertView.findViewById(R.id.jiaobanji_id);
@@ -70,14 +74,37 @@ public class TaskAdapter  extends BaseAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
         TaskBean taskBean = list.get(position);
-
-        viewHolder.tvPeifang.setText(taskBean.getPeifangming());
+        String name = taskBean.getPeifangming();
+        /*
+        <item>小油条</item>
+        <item>元宵</item>
+        <item>韭菜鸡蛋饺子</item>
+        <item>小麻团</item>*/
+        if (resourceid != 0) {
+            if ("小油条".equals(name)){
+                viewHolder.imageview.setImageResource(R.drawable.xiaoyoutiao);
+            }
+            if ("元宵".equals(name)){
+                viewHolder.imageview.setImageResource(R.drawable.yuanxiao);
+            }
+            if ("韭菜鸡蛋饺子".equals(name)){
+                viewHolder.imageview.setImageResource(R.drawable.jiaozi);
+            }
+            if ("小麻团".equals(name)){
+                viewHolder.imageview.setImageResource(R.drawable.xiaomatuan);
+            }
+        }
+        if (name.length()> 5) {
+            name = name.substring(0,5);
+        }
+        viewHolder.tvPeifang.setText(name);
         viewHolder.tvcount.setText("份数：" + taskBean.getCount());
         viewHolder.tvjiaobanji.setText("搅拌机号：" + taskBean.getJiaobanjiID());
         return convertView;
     }
 
     static class ViewHolder {
+        public ImageView imageview;
         public TextView tvPeifang;
         public TextView tvcount;
         public TextView tvjiaobanji;

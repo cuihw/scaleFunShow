@@ -192,12 +192,11 @@ public class Login extends Activity {
                 editable.insert(start, "9");
                 break;
             case R.id.button_ok:
-                if (currentEdit == person_id) {
-                    password.requestFocus();
-                }
                 if (currentEdit == password) {
                     login();
-                }
+                } else if (currentEdit == person_id) {
+                    password.requestFocus();
+                } 
                 break;
             case R.id.button_delete:
                 if (start > 0) editable.delete(start - 1, start);

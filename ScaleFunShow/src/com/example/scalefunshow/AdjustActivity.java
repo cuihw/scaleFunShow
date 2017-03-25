@@ -49,7 +49,7 @@ public class AdjustActivity extends Activity {
 
     List<Float> adjustPointList = new ArrayList<Float>();
 
-    private static boolean IS_ALREADY_ADJUST = false;
+    private static boolean IS_ALREADY_ADJUST = true;
     private static final String TAG = "AdjustActivity";
     
     LinearLayout hint_layout;
@@ -73,6 +73,9 @@ public class AdjustActivity extends Activity {
 
         if (IS_ALREADY_ADJUST) {
             // goto the task activity.
+
+            confirm.setVisibility(View.VISIBLE);
+            IS_ALREADY_ADJUST = true;
         } else {
             Toast.makeText(this, "正在归零中，请稍后.....", Toast.LENGTH_SHORT).show();
             TScale.getInstence().zero();
