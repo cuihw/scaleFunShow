@@ -1,8 +1,9 @@
 package com.example.scalefunshow;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -19,11 +20,9 @@ import android.widget.Toast;
 
 import com.example.scalefunshow.tscale.TScale;
 import com.example.scalefunshow.tscale.TScale.ZeroAdjustListener;
+import com.example.scalefunshow.utils.Constant;
 import com.example.scalefunshow.utils.Utils;
 import com.example.scalefunshow.utils.ZzLog;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdjustActivity extends Activity {
     // 五点校准界面。
@@ -178,7 +177,7 @@ public class AdjustActivity extends Activity {
 
                 ZzLog.i(TAG, "read weight...." + weight);
                 if (!setOk) {
-                    handler.sendEmptyMessageDelayed(GET_WEIGHT, 200);
+                    handler.sendEmptyMessageDelayed(GET_WEIGHT, Constant.DELAY);
                 }
             }
         }

@@ -19,10 +19,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,7 +43,7 @@ public class TaskActivity extends Activity {
     Spinner peifangSpinner;
     Spinner jiaobanjiSpinner;
     Button ok_button;
-    Button back;
+    Button back_btn;
     Button countius;
     EditText countEdit;
     ListView listView1;
@@ -56,18 +58,10 @@ public class TaskActivity extends Activity {
         setContentView(R.layout.activity_task);
 
         ok_button = (Button) findViewById(R.id.ok_button);
-        back = (Button) findViewById(R.id.back);
+        back_btn = (Button) findViewById(R.id.back_btn);
         countius = (Button) findViewById(R.id.add_task);
         countEdit = (EditText) findViewById(R.id.count);
-//        Utils.hideEditTextIMM(this, countEdit); // 隐藏输入法。
-//        countEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (countEdit == v && hasFocus) {
-//
-//                }
-//            }
-//        });
+
         initTitle();
 
         peifangnames = getResources().getStringArray(R.array.peifang);
@@ -126,7 +120,30 @@ public class TaskActivity extends Activity {
     }
 
     private void initTitle() {
-         
+        TextView title = (TextView)findViewById(R.id.title);
+        title.setText("添加任务");
+        updateTaskList();
+        ImageView back =  (ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new OnClickListener(){
+            @Override
+           public void onClick(View arg0) {
+                finish();
+           }});
+    }
+
+    private void updateTaskList() {
+        TextView total_task  = (TextView)findViewById(R.id.total_task);
+        TextView tvtitle = (TextView)findViewById(R.id.tvtitle);
+        if (taskList != null) {
+            total_task.setText("总任务数：" + taskList.size());
+            int countCompleted = 0;
+            for (int i = 0; i < taskList.size(); i++){
+                if (taskList.get(i).isCompleted()) {
+                    countCompleted ++;
+                }
+            }
+            tvtitle.setText("已完成：" + countCompleted);
+        } 
     }
 
     private void initListView() {
@@ -153,7 +170,7 @@ public class TaskActivity extends Activity {
         if (ok_button == view) {
             saveTask();
             Utils.startActivity(this, Login.class);
-        } else if (back == view) {
+        } else if (back_btn == view) {
             clearCurrentTask();
 
             Intent intent = new Intent();
@@ -176,6 +193,7 @@ public class TaskActivity extends Activity {
         SharedPrefUtils.SetString(this, "task", task);
 
         TaskCache.setTaskList(taskList);
+        updateTaskList();
     }
 
     private void addTask2List() {

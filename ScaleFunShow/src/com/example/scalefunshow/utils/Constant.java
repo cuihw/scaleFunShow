@@ -5,5 +5,5 @@ package com.example.scalefunshow.utils;
  */
 
 public class Constant {
-
+     public static final int DELAY = 300;
 }

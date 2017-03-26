@@ -6,13 +6,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.scalefunshow.bean.AdjustBean;
+import com.example.scalefunshow.bean.TaskBean;
 import com.example.scalefunshow.database.DBHelper;
+import com.example.scalefunshow.utils.TaskCache;
 import com.example.scalefunshow.utils.Utils;
 
 import java.util.ArrayList;
@@ -35,7 +39,46 @@ public class AdjustRecordActivity extends Activity {
 		listView = (ListView)findViewById(R.id.listview_record);
 		Log.i(TAG, "listView = " + listView);
 		initListview();
+		initTitle();
 	}
+    private void initTitle() {
+        TextView title = (TextView)findViewById(R.id.title);
+        title.setText("校准报表");
+        updateTaskList();
+
+        ImageView imageView =  (ImageView)findViewById(R.id.imageView);
+        imageView.setOnClickListener(new OnClickListener(){
+             @Override
+            public void onClick(View arg0) {
+                 Utils.startActivity(AdjustRecordActivity.this, Login.class);
+                 finish();
+            }});
+        
+        ImageView back =  (ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new OnClickListener(){
+            @Override
+           public void onClick(View arg0) {
+                Utils.startActivity(AdjustRecordActivity.this, Login.class);
+                finish();
+           }});
+    }
+
+    private void updateTaskList() {
+        TextView total_task  = (TextView)findViewById(R.id.total_task);
+        TextView tvtitle = (TextView)findViewById(R.id.tvtitle);
+
+        List<TaskBean> taskList = TaskCache.getTaskList();
+        if (taskList != null) {
+            total_task.setText("总任务数：" + taskList.size());
+            int countCompleted = 0;
+            for (int i = 0; i < taskList.size(); i++){
+                if (taskList.get(i).isCompleted()) {
+                    countCompleted ++;
+                }
+            }
+            tvtitle.setText("已完成：" + countCompleted);
+        } 
+    }
 
 	private void initListview() {
 		Log.i(TAG, "initListview .....");
@@ -145,7 +188,7 @@ public class AdjustRecordActivity extends Activity {
 			if (0 == position % 2) {
 				convertView.setBackgroundColor(getResources().getColor(R.color.bgcolor));
 			} else {
-				convertView.setBackgroundColor(getResources().getColor(R.color.orange_transparency));
+				convertView.setBackgroundColor(getResources().getColor(R.color.orange_ad));
 			}
 			return convertView;
 		}

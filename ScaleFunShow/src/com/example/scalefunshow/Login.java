@@ -122,13 +122,14 @@ public class Login extends Activity {
     protected void onResume() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onResume();
+        person_id.setText("");
+        password.setText("");
     }
 
     public void onClick(View view) {
         if (view == login) {
             login();
         }
-
     }
 
     private void login() {
@@ -136,7 +137,7 @@ public class Login extends Activity {
         String pwd = password.getText().toString();
         if ("999999".equals(id) && "123456".equals(pwd)) {
             Intent intent = new Intent();
-            intent.setClass(this, TaskActivity.class);
+            intent.setClass(this, ManageActivity.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent();
@@ -149,7 +150,6 @@ public class Login extends Activity {
         bean.setDeviceid(Utils.getDeviceId(Login.this));
         login(bean);
 
-        finish();
     }
 
     public void onClickNumber(View view) {

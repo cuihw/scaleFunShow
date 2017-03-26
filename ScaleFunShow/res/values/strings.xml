@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">sinianzhinengcheng</string>
+    <string name="app_name">千味职能称</string>
     <string name="app_name_cn"></string>
     <string name="demo">Tscale_demo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="adjust_hint">请把砝码放在校验点：</string>
-
 </resources>

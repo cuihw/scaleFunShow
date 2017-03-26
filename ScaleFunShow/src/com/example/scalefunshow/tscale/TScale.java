@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.scalefunshow.utils.Constant;
 import com.tscale.scalelib.jniscale.JNIScale;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class TScale {
     ZeroAdjustListener listener;
     
 	private static final String TAG = "TScale";
+	
 	private static TScale instence;
 	
 	private static JNIScale mScale;
@@ -39,6 +41,7 @@ public class TScale {
 	float adjustZeroWeight = 0;
 
 	public float getAdjustZeroWeight() {
+	    Log.i(TAG, "adjustZeroWeight = " + adjustZeroWeight);
         return adjustZeroWeight;
     }
 
@@ -57,7 +60,7 @@ public class TScale {
 				if (isStop) {
 					mHandler = null;
 				} else {
-					mHandler.postDelayed(this, 500);
+					mHandler.postDelayed(this, Constant.DELAY);
 				}
 			}
 		});
@@ -83,7 +86,9 @@ public class TScale {
 		}
 		try {
 		    weight = Float.parseFloat(temp);
-			weight =  (float)((int)(weight*100))/100;
+		    int iw = (int)(weight*100);
+            Log.i(TAG, "weight = " + iw);
+			weight =  (float)iw/100;
  		} catch (Exception e) {
 			Log.i(TAG, "weight = " + temp);
 		}
@@ -120,7 +125,7 @@ public class TScale {
 						view.setText("归零中...." + weight + "克");
 						view.setTag("OK");
 					}
-					mHandler.postDelayed(this, 1000);
+					mHandler.postDelayed(this, Constant.DELAY);
 				}
 			}
 		}, 500);

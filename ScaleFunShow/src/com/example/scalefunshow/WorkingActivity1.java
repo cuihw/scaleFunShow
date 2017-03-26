@@ -12,6 +12,7 @@ import com.example.scalefunshow.bean.Material;
 import com.example.scalefunshow.bean.TaskBean;
 import com.example.scalefunshow.bean.XiaoYouTiaopeifang;
 import com.example.scalefunshow.tscale.TScale;
+import com.example.scalefunshow.utils.Constant;
 import com.example.scalefunshow.utils.SharedPrefUtils;
 import com.example.scalefunshow.utils.TaskCache;
 import com.example.scalefunshow.utils.Utils;
@@ -25,9 +26,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -85,8 +88,38 @@ public class WorkingActivity1 extends Activity {
         ok_button= (Button) findViewById(R.id.ok_button);
         ok_button.setEnabled(false);
         initTaskInfo();
+        initTitle();
     }
 
+    private void initTitle() {
+        TextView title = (TextView)findViewById(R.id.title);
+        title.setText("称量配方");
+        updateTaskList();
+        
+        ImageView back =  (ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new OnClickListener(){
+            @Override
+           public void onClick(View arg0) {
+                finish();
+           }});
+    }
+
+    private void updateTaskList() {
+        TextView total_task  = (TextView)findViewById(R.id.total_task);
+        TextView tvtitle = (TextView)findViewById(R.id.tvtitle);
+
+        List<TaskBean> taskList = TaskCache.getTaskList();
+        if (taskList != null) {
+            total_task.setText("总任务数：" + taskList.size());
+            int countCompleted = 0;
+            for (int i = 0; i < taskList.size(); i++){
+                if (taskList.get(i).isCompleted()) {
+                    countCompleted ++;
+                }
+            }
+            tvtitle.setText("已完成：" + countCompleted);
+        } 
+    }
     private void initTaskInfo() {
  
         task = TaskCache.current;
@@ -186,7 +219,7 @@ public class WorkingActivity1 extends Activity {
                 } else {
                     int weight = (int) (TScale.getInstence().getWeight()-skinweight);
                     progressBar1.setProgress(weight);
-                    mHandler.postDelayed(this, 200);
+                    mHandler.postDelayed(this, Constant.DELAY);
                     if (Math.abs(totalWeight - weight) < totalWeight*5/100) {
                         // 可以点击确定键。
                         isStop = true;
