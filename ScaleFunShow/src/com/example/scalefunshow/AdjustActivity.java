@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,9 +25,10 @@ import com.example.scalefunshow.utils.Constant;
 import com.example.scalefunshow.utils.Utils;
 import com.example.scalefunshow.utils.ZzLog;
 
-public class AdjustActivity extends Activity {
+public class AdjustActivity extends BaseActivity {
     // 五点校准界面。
-
+    private static final String TAG = "AdjustActivity";
+ 
     private static final int GET_WEIGHT = 1;
     Button confirm;
 
@@ -49,7 +51,6 @@ public class AdjustActivity extends Activity {
     List<Float> adjustPointList = new ArrayList<Float>();
 
     private boolean IS_ALREADY_ADJUST = false;
-    private static final String TAG = "AdjustActivity";
     
     LinearLayout hint_layout;
 
@@ -72,7 +73,6 @@ public class AdjustActivity extends Activity {
 
         if (IS_ALREADY_ADJUST) {
             // goto the task activity.
-
             confirm.setVisibility(View.VISIBLE);
             IS_ALREADY_ADJUST = true;
         } else {
@@ -88,7 +88,6 @@ public class AdjustActivity extends Activity {
                     beginAdjust();
                 }
             });
-
         }
     }
 
@@ -96,6 +95,23 @@ public class AdjustActivity extends Activity {
         int point = 1;
         showHintDialog(point);
     }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+
+            TScale.getInstence().startAdjustZeroWeight(null, new ZeroAdjustListener(){
+                @Override
+                public void onFinish() {
+                    Toast.makeText(AdjustActivity.this, "归零完成。", Toast.LENGTH_SHORT).show();
+                    zeroAdjustWeight = TScale.getInstence().getAdjustZeroWeight();
+                }
+            });
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+     }
 
     private void showHintDialog(final int point) {
         //
@@ -112,7 +128,7 @@ public class AdjustActivity extends Activity {
 
     private void startAdjustPoint(int point) {
         adjustPoint = point;
-        hint.setText("目前正在校验的点位是：" + point + "号位");
+        hint.setText("目前正在校验的点位是：P" + point);
         playAnmi(point, adjust_imageview);
         adjustPointList.clear();
         setOk = false;
@@ -161,6 +177,9 @@ public class AdjustActivity extends Activity {
             if (msg.what == GET_WEIGHT) {
                 float weight = TScale.getInstence().getWeight();
                 weight = weight - zeroAdjustWeight;
+                int iw = (int) (weight * 10);
+                weight = (float)iw/10;
+                
                 adjustPointList.add(weight);
 
                 boolean isfinished = isAdjustFinished(adjustPointList);
@@ -168,6 +187,7 @@ public class AdjustActivity extends Activity {
                     setCurrentPointOk();
                     return;
                 }
+                
                 
                 if (textview_weight.getText().toString().contains("......")) {
                     textview_weight.setText("校准中...   " + weight);
@@ -192,22 +212,35 @@ public class AdjustActivity extends Activity {
 
     protected void setCurrentPointOk() {
         setOk = true;
+        
         animationDrawable.stop();
         if (adjustPoint == 1) {
             adjust_imageview.setImageResource(R.drawable.adjust_1_2);
+            TextView tv = (TextView)findViewById(R.id.point1_tv);
+            tv.setText("P1: " + adjustPointList.get(adjustPointList.size() - 1) + "克");
         } else if (adjustPoint == 2){
             adjust_imageview.setImageResource(R.drawable.adjust_2_2);
+            TextView tv = (TextView)findViewById(R.id.point2_tv);
+            tv.setText("P2: " + adjustPointList.get(adjustPointList.size() - 1) + "克");
         } else if (adjustPoint == 3){
             adjust_imageview.setImageResource(R.drawable.adjust_3_2);
+            TextView tv = (TextView)findViewById(R.id.point3_tv);
+            tv.setText("P3: " + adjustPointList.get(adjustPointList.size() - 1) + "克");
         } else if (adjustPoint == 4){
             adjust_imageview.setImageResource(R.drawable.adjust_4_2);
+            TextView tv = (TextView)findViewById(R.id.point4_tv);
+            tv.setText("P4: " + adjustPointList.get(adjustPointList.size() - 1) + "克");
         } else if (adjustPoint == 5){
             adjust_imageview.setImageResource(R.drawable.adjust_5_2);
+            TextView tv = (TextView)findViewById(R.id.point5_tv);
+            tv.setText("P5: " + adjustPointList.get(adjustPointList.size() - 1) + "克");
         }
 
         if (adjustPoint == 5) {
             confirm.setVisibility(View.VISIBLE);
             IS_ALREADY_ADJUST = true;
+
+            textview_weight.setText("校准完成。");
         } else {
             adjustPoint ++;
             showHintDialog(adjustPoint);

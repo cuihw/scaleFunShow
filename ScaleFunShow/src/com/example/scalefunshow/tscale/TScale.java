@@ -12,36 +12,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TScale {
-    public  interface ZeroAdjustListener {
+    public interface ZeroAdjustListener {
         public void onFinish();
     }
-    
+
     ZeroAdjustListener listener;
-    
-	private static final String TAG = "TScale";
-	
-	private static TScale instence;
-	
-	private static JNIScale mScale;
 
-	public static TScale getInstence(){
-		if (instence == null ) {
-			instence = new TScale();
-			mScale = JNIScale.getScale();
-		}
-		return instence;
-	}
+    private static final String TAG = "TScale";
 
-	private static final int GET_WEIGHT = 1;
+    private static TScale instence;
 
-	Handler mHandler ;
-	float weight;
-	boolean isStop = false;
+    private static JNIScale mScale;
 
-	float adjustZeroWeight = 0;
+    public static TScale getInstence() {
+        if (instence == null) {
+            instence = new TScale();
+            mScale = JNIScale.getScale();
+        }
+        return instence;
+    }
 
-	public float getAdjustZeroWeight() {
-	    Log.i(TAG, "adjustZeroWeight = " + adjustZeroWeight);
+    private static final int GET_WEIGHT = 1;
+
+    Handler mHandler;
+    float weight;
+    boolean isStop = false;
+
+    float adjustZeroWeight = 0;
+
+    public float getAdjustZeroWeight() {
+        Log.i(TAG, "adjustZeroWeight = " + adjustZeroWeight);
         return adjustZeroWeight;
     }
 
@@ -49,144 +49,154 @@ public class TScale {
         this.adjustZeroWeight = adjustZeroWeight;
     }
 
-    public void startWeight(final String preText, final String suffix, final TextView view) {
-		mHandler = new Handler();
-		isStop = false;
-		mHandler.post(new Runnable() {
-			@Override
-			public void run(){
-				weight = getWeight() - adjustZeroWeight;
-				view.setText(preText + weight + suffix);
-				if (isStop) {
-					mHandler = null;
-				} else {
-					mHandler.postDelayed(this, Constant.DELAY);
-				}
-			}
-		});
-	}
+    public void startWeight(final String preText, final String suffix,
+            final TextView view) {
+        mHandler = new Handler();
+        isStop = false;
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                weight = getWeight() - adjustZeroWeight;
+                view.setText(preText + weight + suffix);
+                if (isStop) {
+                    mHandler = null;
+                } else {
+                    mHandler.postDelayed(this, Constant.DELAY);
+                }
+            }
+        });
+    }
 
-	public float stopAndGetWeight () {
-		isStop = true;
-		return weight;
-	}
+    public float stopAndGetWeight() {
+        isStop = true;
+        return weight;
+    }
 
-	public static void reset(){
-		mScale = JNIScale.getScale();
-	}
-	// 得到毛重
-	public float getWeight() {
-		TScale.getInstence();
-		String temp = null;
-		if (mScale != null) {
-			temp = mScale.getStringGross();
-		}
-		if (TextUtils.isEmpty(temp)) {
-			return 0;
-		}
-		try {
-		    weight = Float.parseFloat(temp);
-		    int iw = (int)(weight*100);
+    public static void reset() {
+        mScale = JNIScale.getScale();
+    }
+
+    // 得到毛重
+    public float getWeight() {
+        TScale.getInstence();
+        String temp = null;
+        if (mScale != null) {
+            temp = mScale.getStringGross();
+        }
+        if (TextUtils.isEmpty(temp)) {
+            return 0;
+        }
+        try {
+            weight = Float.parseFloat(temp);
+            int iw = (int) (weight * 100);
             Log.i(TAG, "weight = " + iw);
-			weight =  (float)iw/100;
- 		} catch (Exception e) {
-			Log.i(TAG, "weight = " + temp);
-		}
+            weight = (float) iw / 100;
+        } catch (Exception e) {
+            Log.i(TAG, "weight = " + temp);
+        }
 
-		return weight;
-	}
+        return weight;
+    }
 
-	List<Float> floatAdjustWeight = new ArrayList<Float>(4);
+    List<Float> floatAdjustWeight = new ArrayList<Float>(4);
 
-	public void startAdjustZeroWeight(final TextView view, final ZeroAdjustListener listener) {
-		view.setTag("OK");
-		this.listener = listener;
-		adjustZeroWeight = 0;
-		mHandler = new Handler();
-		mHandler.postDelayed(new Runnable() {
-			@Override
-			public void run(){
-				weight = getWeight();
-				floatAdjustWeight.add(0, weight);
-				if (equalsItem(floatAdjustWeight)) {
-					Log.i(TAG, "completed set zero.");
-					view.setText("归零完成：" + 0 + "克");
-					adjustZeroWeight = floatAdjustWeight.get(0);
-					if (listener != null) {
-					    listener.onFinish();
-					}
-				} else {
-					Log.i(TAG, "progress set zero.");
-					String tag = (String) view.getTag();
-					if (tag.equals("OK")) {
-						view.setText("归零中..  " + weight + "克");
-						view.setTag("aaaa");
-					} else {
-						view.setText("归零中...." + weight + "克");
-						view.setTag("OK");
-					}
-					mHandler.postDelayed(this, Constant.DELAY);
-				}
-			}
-		}, 500);
+    public void startAdjustZeroWeight(final TextView view,
+            final ZeroAdjustListener listener) {
 
-	}
+        if (view != null) {
+            view.setTag("OK");
+        }
+        this.listener = listener;
+        adjustZeroWeight = 0;
+        mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                weight = getWeight();
+                floatAdjustWeight.add(0, weight);
+                if (equalsItem(floatAdjustWeight)) {
+                    Log.i(TAG, "completed set zero.");
+                    if (view != null) {
+                        view.setText("归零完成：" + 0 + "克");
+                    }
+                    adjustZeroWeight = floatAdjustWeight.get(0);
+                    Log.i(TAG, "adjustZeroWeight = " + adjustZeroWeight);
+                    if (listener != null) {
+                        listener.onFinish();
+                    }
+                } else {
+                    Log.i(TAG, "progress set zero.");
+                    if (view != null) {
+                        String tag = (String) view.getTag();
+                        if (tag.equals("OK")) {
+                            view.setText("归零中..  " + weight + "克");
+                            view.setTag("aaaa");
+                        } else {
+                            view.setText("归零中...." + weight + "克");
+                            view.setTag("OK");
+                        }
+                    }
+                    mHandler.postDelayed(this, Constant.DELAY);
+                }
+            }
+        }, 500);
 
-	private boolean equalsItem(List<Float> floatWeight) {
+    }
 
-		Log.i(TAG, "floatWeight.size() = " + floatWeight.size());
+    private boolean equalsItem(List<Float> floatWeight) {
 
-		if (floatWeight.size() > 4) {
-			floatWeight.remove(floatWeight.size()-1);
-		} else if (floatWeight.size() < 4){
-			return false;
-		}
-		Log.i(TAG, "floatWeight.size() = " + floatWeight.size());
+        Log.i(TAG, "floatWeight.size() = " + floatWeight.size());
 
-		for (int i = 1; i<floatWeight.size(); i++) {
-			float delta = floatWeight.get(i).floatValue() - floatWeight.get(i-1).floatValue();
+        if (floatWeight.size() > 4) {
+            floatWeight.remove(floatWeight.size() - 1);
+        } else if (floatWeight.size() < 4) {
+            return false;
+        }
+        Log.i(TAG, "floatWeight.size() = " + floatWeight.size());
 
-			Log.i(TAG, "delta = " + delta);
-			if (Math.abs(delta) > 0.1) {
-				Log.i(TAG, "floatWeight is not equals.");
-				return false;
-			}
-		}
-		return true;
-	}
+        for (int i = 1; i < floatWeight.size(); i++) {
+            float delta = floatWeight.get(i).floatValue()
+                    - floatWeight.get(i - 1).floatValue();
 
-	enum UnitIndex
-    {
-        UNIT_KG,  //千克
-        UNIT_G,   //克
-        UNIT_TJ,  //台斤
-        UNIT_GJ,  //港斤
-        UNIT_LB,  //磅
-        UNIT_OZ,  //盎司
-        UNIT_LBOZ,//磅盎司
+            Log.i(TAG, "delta = " + delta);
+            if (Math.abs(delta) > 0.1) {
+                Log.i(TAG, "floatWeight is not equals.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    enum UnitIndex {
+        UNIT_KG, // 千克
+        UNIT_G, // 克
+        UNIT_TJ, // 台斤
+        UNIT_GJ, // 港斤
+        UNIT_LB, // 磅
+        UNIT_OZ, // 盎司
+        UNIT_LBOZ, // 磅盎司
         UNIT_END
     };
-	
-	public void setUnit(){
-		if (mScale!= null) {
-			//int unit = (int)UnitIndex.UNIT_G;
-			mScale.setUnit(1); // 设置单位为G
-		}
-	}
-	
-	public void zero(){
-		if (mScale!= null) {
-			mScale.zero(); // 设置单位为G
-		}
-	}
 
+    public void setUnit() {
+        if (mScale != null) {
+            // int unit = (int)UnitIndex.UNIT_G;
+            mScale.setUnit(1); // 设置单位为G
+        }
+    }
 
-	public int getMainUnitDeci() {
-		
-		return mScale.getMainUnitDeci();
-	}
-	
-	public void setMainUnitDeci(int deci) {
-		mScale.setMainUnitDeci(deci);
-	}
+    public void zero() {
+        if (mScale != null) {
+            mScale.zero(); // 设置单位为G
+        }
+    }
+
+    public int getMainUnitDeci() {
+
+        return mScale.getMainUnitDeci();
+    }
+
+    public void setMainUnitDeci(int deci) {
+        mScale.setMainUnitDeci(deci);
+    }
 }

@@ -58,8 +58,7 @@ public class AdjustRecordActivity extends Activity {
         back.setOnClickListener(new OnClickListener(){
             @Override
            public void onClick(View arg0) {
-                Utils.startActivity(AdjustRecordActivity.this, Login.class);
-                finish();
+                 finish();
            }});
     }
 

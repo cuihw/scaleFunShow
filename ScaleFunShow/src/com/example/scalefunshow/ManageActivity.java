@@ -75,7 +75,6 @@ public class ManageActivity extends Activity {
         } else {
             Utils.startActivity(this, AdjustRecordActivity.class);
         }
-        finish();
     }
  
 }

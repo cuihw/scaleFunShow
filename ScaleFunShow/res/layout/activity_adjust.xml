@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/adjust_imageview"
             android:layout_centerHorizontal="true"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textColor="@color/black"
             android:id="@+id/hint"/>
 
@@ -39,28 +39,89 @@
 
         <TextView
             android:id="@+id/fama_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:padding="20dp"
-            android:text="砝碼重量:500克"
+            android:layout_marginTop="20dp"
+            android:text="砝码重量:500克"
             android:background="@drawable/lable"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textSize="20sp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
             android:id="@+id/textview_weight"
-            android:layout_width="wrap_content"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/fama_textView"
             android:layout_centerHorizontal="true" 
-            android:padding="20dp"
             android:textSize="20sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="读取到的重量"
             android:background="@drawable/lable"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        
+        <TextView
+            android:id="@+id/point1_tv"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview_weight"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="#CDB7B5"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="P1：" />   
+        <TextView
+            android:id="@+id/point2_tv"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/point1_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="#CDB7B5"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="P2：" />
+        <TextView
+            android:id="@+id/point3_tv"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/point2_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="#CDB7B5"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="P3：" />
+        <TextView
+            android:id="@+id/point4_tv"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/point3_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="#CDB7B5"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="P4：" />
+        <TextView
+            android:id="@+id/point5_tv"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/point4_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="#CDB7B5"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="P5：" />
+        
+        
         <Button
             android:id="@+id/confirm"
             android:layout_width="wrap_content"
@@ -75,6 +136,7 @@
             android:textSize="30sp"
             android:text="全部校准完成" />
 
+
     </RelativeLayout>
 
     <LinearLayout
@@ -83,6 +145,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@color/orange_back"
+        android:visibility="gone"
         android:orientation="vertical" >
 
         <TextView
